@@ -383,8 +383,11 @@ p { font: var(--wst-font-style-body-medium); }
 
 /* Dark Mode Toggle Button */
 .theme-toggle {
-    width: 32px;
-    height: 32px;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 0;
     border-radius: 50%;
     border: 1px solid var(--wst-color-line);
     background-color: var(--wst-color-fill-base-shade-1);
@@ -404,7 +407,7 @@ p { font: var(--wst-font-style-body-medium); }
 }
 
 .theme-toggle i {
-    font-size: 0.95rem;
+    font-size: 0.85rem !important;
     transition: transform 0.3s ease;
 }
 
