@@ -59,29 +59,30 @@
             margin-bottom: 1rem;
         }
         
-        /* Sidebar header - add padding and stack vertically */
-        [class*="sidebar"] > div:first-child,
-        [class*="sidebar"] header,
-        aside > div:first-child,
-        aside header {
+        /* Sveltia CMS - Sidebar styling */
+        /* Target the main sidebar container */
+        #nc-root > div > div:first-child,
+        #nc-root aside,
+        [role="navigation"],
+        nav[class] {
             padding-top: 1.5rem !important;
+        }
+        
+        /* Target the header area with logo and buttons */
+        #nc-root > div > div:first-child > div:first-child,
+        #nc-root aside > div:first-child,
+        [class*="primary-navigation"] > div:first-child {
+            display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
-            gap: 0.75rem !important;
+            gap: 1rem !important;
+            padding: 1rem !important;
+            padding-top: 1.5rem !important;
         }
         
-        /* Sidebar logo wrapper - center and add margin */
-        [class*="sidebar"] [class*="logo"],
-        aside [class*="logo"] {
-            margin-bottom: 0.5rem !important;
-        }
-        
-        /* Sidebar buttons - move below logo */
-        [class*="sidebar"] [class*="toolbar"],
-        [class*="sidebar"] [class*="buttons"],
-        [class*="sidebar"] > div:first-child > div:last-child,
-        aside [class*="toolbar"],
-        aside > div:first-child > div:last-child {
+        /* Make the button row wrap below */
+        #nc-root button[class*="icon"],
+        [class*="toolbar"] {
             margin-top: 0.5rem !important;
         }
     </style>
