@@ -1,0 +1,185 @@
+# ============================================
+# DECAP CMS CONFIGURATION
+# Lindsay Precast Website
+# ============================================
+# 
+# TO ROLL BACK: Delete /admin and /content folders
+#
+# ============================================
+
+# Backend Configuration
+# Using local backend for testing (no authentication required)
+# Change to 'git-gateway' for production with Netlify Identity
+backend:
+  name: git-gateway
+  branch: main
+
+# Local backend for testing (run: npx decap-server)
+local_backend: true
+
+# Media files location
+media_folder: "images"
+public_folder: "/images"
+
+# Site URL (update after deploying)
+site_url: https://your-site.vercel.app
+display_url: https://your-site.vercel.app
+
+# Logo in admin
+logo_url: /images/lindsay.png
+
+# Content Collections
+collections:
+  # ============================================
+  # SITE SETTINGS
+  # ============================================
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings.json"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string", default: "Lindsay Precast" }
+          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Business Hours", name: "hours", widget: "string" }
+
+  # ============================================
+  # HERO SECTION
+  # ============================================
+  - name: "hero"
+    label: "Hero Section"
+    files:
+      - name: "hero_content"
+        label: "Hero Content"
+        file: "content/hero.json"
+        fields:
+          - { label: "Badge Text", name: "badge", widget: "string", default: "Industry Leader" }
+          - { label: "Main Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - { label: "Primary Button Text", name: "primaryButton", widget: "string" }
+          - { label: "Secondary Button Text", name: "secondaryButton", widget: "string" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+
+  # ============================================
+  # STATS SECTION
+  # ============================================
+  - name: "stats"
+    label: "Statistics"
+    files:
+      - name: "stats_content"
+        label: "Stats Content"
+        file: "content/stats.json"
+        fields:
+          - label: "Statistics"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Number/Value", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  # ============================================
+  # FEATURES/PARTNER SECTION
+  # ============================================
+  - name: "features"
+    label: "Features Section"
+    files:
+      - name: "features_content"
+        label: "Features Content"
+        file: "content/features.json"
+        fields:
+          - { label: "Section Badge", name: "badge", widget: "string" }
+          - { label: "Section Title", name: "title", widget: "string" }
+          - { label: "Section Description", name: "description", widget: "text" }
+          - label: "Feature Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Icon (Bootstrap Icon class)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+  # ============================================
+  # PROJECTS
+  # ============================================
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Project Name", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string" }
+      - { label: "Status", name: "status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Stats Tags"
+        name: "tags"
+        widget: "list"
+        fields:
+          - { label: "Tag", name: "tag", widget: "string" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 0 }
+
+  # ============================================
+  # CAPABILITIES
+  # ============================================
+  - name: "capabilities"
+    label: "Capabilities Section"
+    files:
+      - name: "capabilities_content"
+        label: "Capabilities Content"
+        file: "content/capabilities.json"
+        fields:
+          - { label: "Section Badge", name: "badge", widget: "string" }
+          - { label: "Section Title", name: "title", widget: "string" }
+          - { label: "Section Description", name: "description", widget: "text" }
+          - label: "Capability Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Icon (Bootstrap Icon class)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Images"
+            name: "images"
+            widget: "list"
+            max: 2
+            fields:
+              - { label: "Image", name: "src", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+
+  # ============================================
+  # TESTIMONIALS
+  # ============================================
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Author Name", name: "author", widget: "string" }
+      - { label: "Author Title", name: "authorTitle", widget: "string" }
+      - { label: "Author Photo", name: "photo", widget: "image", required: false }
+      - { label: "Rating (1-5)", name: "rating", widget: "number", min: 1, max: 5, default: 5 }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+  # ============================================
+  # CTA SECTION
+  # ============================================
+  - name: "cta"
+    label: "Call to Action"
+    files:
+      - name: "cta_content"
+        label: "CTA Content"
+        file: "content/cta.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Primary Button Text", name: "primaryButton", widget: "string" }
+          - { label: "Secondary Button Text", name: "secondaryButton", widget: "string" }
+

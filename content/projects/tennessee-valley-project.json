@@ -1,0 +1,15 @@
+{
+  "title": "Tennessee Valley Project",
+  "subtitle": "10MW Installation - 2024",
+  "status": "In Progress",
+  "image": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
+  "description": "Our largest QCELLS partnership to date, featuring 4,800 custom grade beams with advanced reinforcement specifications.",
+  "tags": [
+    { "tag": "4,800 Units" },
+    { "tag": "12 Weeks" },
+    { "tag": "75% Complete" }
+  ],
+  "featured": true,
+  "order": 2
+}
+

@@ -1,0 +1,33 @@
+{
+  "badge": "Our Capabilities",
+  "title": "Advanced Manufacturing Excellence",
+  "description": "State-of-the-art facilities and processes ensure every grade beam meets the demanding requirements of QCELLS solar installations.",
+  "items": [
+    {
+      "icon": "bi-rulers",
+      "title": "Custom Design Services",
+      "description": "Tailored grade beam solutions engineered for specific site conditions and load requirements."
+    },
+    {
+      "icon": "bi-clipboard-check",
+      "title": "Quality Assurance",
+      "description": "Rigorous testing protocols including compressive strength, dimensional accuracy, and finish quality."
+    },
+    {
+      "icon": "bi-truck",
+      "title": "Logistics Management",
+      "description": "Coordinated delivery schedules ensuring just-in-time arrival for seamless installation workflows."
+    }
+  ],
+  "images": [
+    {
+      "src": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80",
+      "alt": "Manufacturing Process"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80",
+      "alt": "Quality Control"
+    }
+  ]
+}
+

@@ -1,0 +1,23 @@
+{
+  "badge": "Premier Partnership",
+  "title": "Trusted QCELLS Partner",
+  "description": "Our specialized expertise in grade beam solutions has made us the preferred choice for QCELLS solar farm installations across the region.",
+  "cards": [
+    {
+      "icon": "bi-shield-check",
+      "title": "Precision Engineering",
+      "description": "Every grade beam is manufactured to exact specifications, ensuring perfect alignment for QCELLS solar panel installations."
+    },
+    {
+      "icon": "bi-clock",
+      "title": "Rapid Deployment",
+      "description": "Precast solutions reduce on-site installation time by 60%, accelerating project timelines and reducing costs."
+    },
+    {
+      "icon": "bi-leaf",
+      "title": "Sustainable Materials",
+      "description": "Eco-friendly concrete mixtures and manufacturing processes align with QCELLS commitment to sustainability."
+    }
+  ]
+}
+
