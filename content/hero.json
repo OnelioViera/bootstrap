@@ -8,12 +8,6 @@
       "url": "#projects",
       "style": "primary",
       "icon": "bi-arrow-right"
-    },
-    {
-      "text": "Contact Us",
-      "url": "#contact",
-      "style": "secondary",
-      "icon": "bi-envelope"
     }
   ],
   "heroImage": "/images/2025-11-26_08-30-53.png"
