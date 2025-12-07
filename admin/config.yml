@@ -5,12 +5,13 @@
 # ============================================
 
 # GitHub Backend Configuration
-# Using Sveltia CMS with GitHub OAuth (one-click login!)
+# Using custom OAuth handler on Vercel
 backend:
   name: github
   repo: OnelioViera/bootstrap
   branch: main
-  app_id: Ov23liM1wvUB1m7FGUmt
+  base_url: https://bootstrap-gules-eta.vercel.app
+  auth_endpoint: /api/auth
 
 # Media files location
 media_folder: "images"
