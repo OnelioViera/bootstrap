@@ -94,9 +94,14 @@ collections:
           - label: "Statistics"
             name: "items"
             widget: "list"
+            min: 1
+            max: 6
+            collapsed: true
+            summary: "{{fields.number}} - {{fields.label}}"
+            label_singular: "Stat"
             fields:
-              - { label: "Number/Value", name: "number", widget: "string" }
-              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Number/Value", name: "number", widget: "string", hint: "e.g. 25+, 15MW, 98%, 100%" }
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. Years Experience, Solar Capacity" }
 
   # ============================================
   # FEATURES/PARTNER SECTION

@@ -681,8 +681,8 @@ p { font: var(--wst-font-style-body-medium); }
 }
 
 .stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 1.75rem;
+    font-weight: 700;
     background: linear-gradient(135deg, var(--wst-color-fill-accent-1) 0%, var(--wst-color-fill-accent-3) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -691,7 +691,7 @@ p { font: var(--wst-font-style-body-medium); }
 
 @media (min-width: 768px) {
     .stat-number {
-        font-size: 3.25rem;
+        font-size: 2.25rem;
     }
 }
 

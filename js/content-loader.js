@@ -125,7 +125,7 @@ async function loadStatsContent() {
     content.items.forEach((stat, index) => {
         if (statItems[index]) {
             const number = statItems[index].querySelector('.stat-number');
-            const label = statItems[index].querySelector('p');
+            const label = statItems[index].querySelector('.text-muted-custom');
             if (number) number.textContent = stat.number;
             if (label) label.textContent = stat.label;
         }
