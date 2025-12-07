@@ -150,28 +150,33 @@ async function loadFeaturesContent() {
     const content = await loadContent('/content/features.json');
     if (!content) return;
 
+    const section = document.querySelector('#about');
+    if (!section) return;
+
     // Update section badge
-    const badge = document.querySelector('#about .badge-secondary');
-    if (badge) badge.textContent = content.badge;
+    const badge = section.querySelector('.badge-outline');
+    if (badge && content.badge) {
+        badge.innerHTML = `<i class="bi bi-star-fill"></i> ${content.badge}`;
+    }
 
     // Update section title
-    const title = document.querySelector('#about .heading-lg');
+    const title = section.querySelector('.heading-lg');
     if (title) title.textContent = content.title;
 
     // Update section description
-    const desc = document.querySelector('#about > .container > .row > .col-lg-6:first-child > p');
+    const desc = section.querySelector('.text-center .fs-5');
     if (desc) desc.textContent = content.description;
 
     // Update feature cards
     if (content.cards) {
-        const cards = document.querySelectorAll('#about .custom-card');
+        const cards = section.querySelectorAll('.custom-card');
         content.cards.forEach((card, index) => {
             if (cards[index]) {
                 const icon = cards[index].querySelector('i');
-                const cardTitle = cards[index].querySelector('h5');
+                const cardTitle = cards[index].querySelector('h3');
                 const cardDesc = cards[index].querySelector('p');
                 
-                if (icon) icon.className = `bi ${card.icon} fs-4`;
+                if (icon && card.icon) icon.className = `bi ${card.icon} fs-3`;
                 if (cardTitle) cardTitle.textContent = card.title;
                 if (cardDesc) cardDesc.textContent = card.description;
             }
