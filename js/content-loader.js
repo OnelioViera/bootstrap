@@ -33,19 +33,20 @@ async function loadHeroContent() {
     const badge = document.querySelector('.hero-section .badge-outline');
     if (badge) badge.innerHTML = `<i class="bi bi-award me-2"></i>${content.badge}`;
 
-    // Update title
-    const title = document.querySelector('.hero-section .heading-xl');
-    if (title) {
-        // Check if title contains a colon for splitting
-        if (content.title.includes(':')) {
-            const parts = content.title.split(':');
-            title.innerHTML = `${parts[0]}:<br><span class="text-gradient">${parts.slice(1).join(':').trim()}</span>`;
-        } else {
-            title.textContent = content.title;
-        }
+    // Update title - check if it has a colon to split into h1 and h3
+    const mainTitle = document.querySelector('.hero-section h1');
+    const subHeading = document.querySelector('.hero-section h3');
+    
+    if (content.title.includes(':')) {
+        const parts = content.title.split(':');
+        if (mainTitle) mainTitle.textContent = parts[0] + ':';
+        if (subHeading) subHeading.textContent = parts.slice(1).join(':').trim();
+    } else {
+        if (mainTitle) mainTitle.textContent = content.title;
+        if (subHeading) subHeading.style.display = 'none';
     }
 
-    // Update subtitle
+    // Update description/subtitle
     const subtitle = document.querySelector('.hero-section .fs-5.text-muted-custom');
     if (subtitle) subtitle.textContent = content.subtitle;
 
