@@ -5,11 +5,12 @@
 # ============================================
 
 # GitHub Backend Configuration
-# Using Sveltia CMS with PKCE authentication (no backend server needed!)
+# Using Sveltia CMS with GitHub OAuth (one-click login!)
 backend:
   name: github
   repo: OnelioViera/bootstrap
   branch: main
+  app_id: Ov23liM1wvUB1m7FGUmt
 
 # Media files location
 media_folder: "images"
