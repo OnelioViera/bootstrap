@@ -81,17 +81,11 @@ function initDarkMode() {
     const themeToggleMobile = document.getElementById('themeToggleMobile');
     const themeIconMobile = document.getElementById('themeIconMobile');
     
-    // Check for saved theme preference or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Check for saved theme preference, default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
     
-    if (savedTheme) {
-        html.setAttribute('data-bs-theme', savedTheme);
-        updateThemeIcons(savedTheme);
-    } else if (systemPrefersDark) {
-        html.setAttribute('data-bs-theme', 'dark');
-        updateThemeIcons('dark');
-    }
+    html.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcons(savedTheme);
     
     function toggleTheme() {
         const currentTheme = html.getAttribute('data-bs-theme');
