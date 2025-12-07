@@ -58,6 +58,32 @@
             max-height: 80px !important;
             margin-bottom: 1rem;
         }
+        
+        /* Sidebar header - add padding and stack vertically */
+        [class*="sidebar"] > div:first-child,
+        [class*="sidebar"] header,
+        aside > div:first-child,
+        aside header {
+            padding-top: 1.5rem !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+        }
+        
+        /* Sidebar logo wrapper - center and add margin */
+        [class*="sidebar"] [class*="logo"],
+        aside [class*="logo"] {
+            margin-bottom: 0.5rem !important;
+        }
+        
+        /* Sidebar buttons - move below logo */
+        [class*="sidebar"] [class*="toolbar"],
+        [class*="sidebar"] [class*="buttons"],
+        [class*="sidebar"] > div:first-child > div:last-child,
+        aside [class*="toolbar"],
+        aside > div:first-child > div:last-child {
+            margin-top: 0.5rem !important;
+        }
     </style>
 </head>
 <body>
