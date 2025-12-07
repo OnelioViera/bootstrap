@@ -35,20 +35,23 @@ async function loadHeroContent() {
 
     // Update title - check if it has a colon to split into h1 and h3
     const mainTitle = document.querySelector('.hero-section h1');
-    const subHeading = document.querySelector('.hero-section h3');
+    const subHeading = document.querySelector('.hero-section .hero-subheading');
     
-    if (content.title.includes(':')) {
+    if (content.title && content.title.includes(':')) {
         const parts = content.title.split(':');
         if (mainTitle) mainTitle.textContent = parts[0] + ':';
-        if (subHeading) subHeading.textContent = parts.slice(1).join(':').trim();
-    } else {
+        if (subHeading) {
+            subHeading.textContent = parts.slice(1).join(':').trim();
+            subHeading.style.display = '';
+        }
+    } else if (content.title) {
         if (mainTitle) mainTitle.textContent = content.title;
         if (subHeading) subHeading.style.display = 'none';
     }
 
-    // Update description/subtitle
-    const subtitle = document.querySelector('.hero-section .fs-5.text-muted-custom');
-    if (subtitle) subtitle.textContent = content.subtitle;
+    // Update description
+    const description = document.querySelector('.hero-section .hero-description');
+    if (description) description.textContent = content.subtitle;
 
     // Update buttons dynamically
     const buttonContainer = document.querySelector('.hero-section .hero-buttons');
@@ -89,6 +92,12 @@ async function loadHeroContent() {
     const heroImg = document.querySelector('.hero-section .hero-image');
     if (heroImg && content.heroImage) {
         heroImg.src = content.heroImage;
+    }
+
+    // Show hero content (fade in)
+    const heroContent = document.querySelector('.hero-section .hero-content');
+    if (heroContent) {
+        heroContent.classList.add('loaded');
     }
 }
 

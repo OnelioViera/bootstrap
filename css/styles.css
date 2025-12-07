@@ -517,6 +517,16 @@ p { font: var(--wst-font-style-body-medium); }
     }
 }
 
+/* Hero content fade-in to prevent flash */
+.hero-content {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-content.loaded {
+    opacity: 1;
+}
+
 /* Badge Styles */
 .badge-outline {
     background: transparent;
