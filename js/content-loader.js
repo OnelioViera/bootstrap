@@ -36,12 +36,10 @@ async function loadHeroContent() {
     // Update title
     const title = document.querySelector('.hero-section .heading-xl');
     if (title) {
-        // Split title for styling - first part normal, rest with gradient
-        const words = content.title.split(' ');
-        if (words.length > 2) {
-            const firstPart = words.slice(0, 2).join(' ');
-            const secondPart = words.slice(2).join(' ');
-            title.innerHTML = `${firstPart}:<br><span class="text-gradient">${secondPart}</span>`;
+        // Check if title contains a colon for splitting
+        if (content.title.includes(':')) {
+            const parts = content.title.split(':');
+            title.innerHTML = `${parts[0]}:<br><span class="text-gradient">${parts.slice(1).join(':').trim()}</span>`;
         } else {
             title.textContent = content.title;
         }
@@ -51,18 +49,39 @@ async function loadHeroContent() {
     const subtitle = document.querySelector('.hero-section .fs-5.text-muted-custom');
     if (subtitle) subtitle.textContent = content.subtitle;
 
-    // Update buttons
-    const primaryBtn = document.querySelector('.hero-section .btn-primary-gradient');
-    if (primaryBtn) {
-        const icon = primaryBtn.querySelector('i');
-        primaryBtn.innerHTML = content.primaryButton;
-        if (icon) primaryBtn.prepend(icon);
-        primaryBtn.innerHTML += ' <i class="bi bi-arrow-right"></i>';
-    }
-
-    const secondaryBtn = document.querySelector('.hero-section .btn-secondary-outline');
-    if (secondaryBtn) {
-        secondaryBtn.innerHTML = `<i class="bi bi-play-circle me-2"></i>${content.secondaryButton}`;
+    // Update buttons dynamically
+    const buttonContainer = document.querySelector('.hero-section .hero-buttons');
+    if (buttonContainer && content.buttons && content.buttons.length > 0) {
+        buttonContainer.innerHTML = ''; // Clear existing buttons
+        
+        content.buttons.forEach(button => {
+            const btnElement = document.createElement('a');
+            btnElement.href = button.url || '#';
+            
+            // Set button style class
+            switch (button.style) {
+                case 'primary':
+                    btnElement.className = 'btn btn-primary-gradient btn-lg';
+                    break;
+                case 'secondary':
+                    btnElement.className = 'btn btn-secondary-outline btn-lg';
+                    break;
+                case 'accent':
+                    btnElement.className = 'btn btn-accent-gradient btn-lg';
+                    break;
+                default:
+                    btnElement.className = 'btn btn-primary-gradient btn-lg';
+            }
+            
+            // Add icon if specified
+            if (button.icon) {
+                btnElement.innerHTML = `${button.text} <i class="bi ${button.icon} ms-2"></i>`;
+            } else {
+                btnElement.textContent = button.text;
+            }
+            
+            buttonContainer.appendChild(btnElement);
+        });
     }
 
     // Update hero image

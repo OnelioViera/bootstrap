@@ -55,8 +55,26 @@ collections:
           - { label: "Badge Text", name: "badge", widget: "string", default: "Industry Leader" }
           - { label: "Main Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "text" }
-          - { label: "Primary Button Text", name: "primaryButton", widget: "string" }
-          - { label: "Secondary Button Text", name: "secondaryButton", widget: "string" }
+          - label: "Buttons"
+            name: "buttons"
+            widget: "list"
+            min: 0
+            max: 4
+            fields:
+              - { label: "Button Text", name: "text", widget: "string" }
+              - { label: "Link URL", name: "url", widget: "string", default: "#" }
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                options:
+                  - { label: "Primary (Filled)", value: "primary" }
+                  - { label: "Secondary (Outline)", value: "secondary" }
+                  - { label: "Accent (Red)", value: "accent" }
+              - label: "Icon (optional)"
+                name: "icon"
+                widget: "string"
+                required: false
+                hint: "Bootstrap icon name, e.g. 'bi-arrow-right' or 'bi-play-circle'"
           - { label: "Hero Image", name: "heroImage", widget: "image" }
 
   # ============================================
