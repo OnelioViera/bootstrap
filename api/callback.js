@@ -34,29 +34,57 @@ export default async function handler(req, res) {
       return res.status(400).send(`Error: ${data.error_description || data.error}`);
     }
 
-    // Return HTML that posts the token back to the CMS
-    const script = `
-      <script>
-        (function() {
-          function receiveMessage(e) {
-            console.log("receiveMessage %o", e);
-            window.opener.postMessage(
-              'authorization:github:success:${JSON.stringify({ token: data.access_token, provider: 'github' })}',
-              e.origin
-            );
-            window.removeEventListener("message", receiveMessage, false);
-          }
-          window.addEventListener("message", receiveMessage, false);
-          window.opener.postMessage("authorizing:github", "*");
-        })();
-      </script>
-    `;
+    const token = data.access_token;
+
+    // Return HTML that posts the token back to the CMS (Netlify CMS / Decap / Sveltia format)
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Authorization Complete</title>
+</head>
+<body>
+  <p>Authorization successful! This window will close automatically...</p>
+  <script>
+    (function() {
+      const token = "${token}";
+      const provider = "github";
+      
+      // Try multiple message formats for compatibility
+      const message = "authorization:" + provider + ":success:" + JSON.stringify({
+        token: token,
+        provider: provider
+      });
+      
+      // Send to opener (popup flow)
+      if (window.opener) {
+        window.opener.postMessage(message, "*");
+        setTimeout(function() {
+          window.close();
+        }, 1000);
+      } else {
+        // If no opener, store token and redirect
+        localStorage.setItem("netlify-cms-user", JSON.stringify({
+          token: token,
+          provider: provider
+        }));
+        localStorage.setItem("sveltia-cms-user", JSON.stringify({
+          token: token,
+          provider: provider,
+          backendName: "github"
+        }));
+        window.location.href = "/admin/";
+      }
+    })();
+  </script>
+</body>
+</html>`;
 
     res.setHeader('Content-Type', 'text/html');
-    res.send(`<!DOCTYPE html><html><head><title>Authorizing...</title></head><body>${script}<p>Authorizing, please wait...</p></body></html>`);
+    res.send(html);
   } catch (error) {
     console.error('OAuth error:', error);
-    res.status(500).send('Authentication failed');
+    res.status(500).send('Authentication failed: ' + error.message);
   }
 }
-
