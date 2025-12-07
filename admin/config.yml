@@ -60,6 +60,10 @@ collections:
             widget: "list"
             min: 0
             max: 4
+            collapsed: true
+            summary: "{{fields.text}} ({{fields.style}})"
+            add_to_top: false
+            label_singular: "Button"
             fields:
               - { label: "Button Text", name: "text", widget: "string" }
               - { label: "Link URL", name: "url", widget: "string", default: "#" }

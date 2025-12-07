@@ -19,10 +19,21 @@
             background-color: #f5f5f5 !important;
             color: #1f2937 !important;
         }
-        /* Hide the "Sign In with GitHub Using PAT" button */
-        button[class*="secondary"], 
-        button:nth-of-type(2) {
+        /* Hide the "Sign In with GitHub Using PAT" button on login screen only */
+        [class*="login"] button[class*="secondary"],
+        [class*="sign-in"] button:nth-of-type(2) {
             display: none !important;
+        }
+        /* Ensure delete buttons in list items are visible */
+        [class*="delete"], 
+        [class*="remove"],
+        button[aria-label*="delete"],
+        button[aria-label*="Delete"],
+        button[aria-label*="remove"],
+        button[aria-label*="Remove"] {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
     </style>
 </head>
