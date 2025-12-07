@@ -1,32 +1,26 @@
 # ============================================
 # DECAP CMS CONFIGURATION
 # Lindsay Precast Website
-# ============================================
-# 
-# TO ROLL BACK: Delete /admin and /content folders
-#
+# GitHub Backend - Saves directly to your repo!
 # ============================================
 
-# Backend Configuration
-# Using local backend for testing (no authentication required)
-# Change to 'git-gateway' for production with Netlify Identity
+# GitHub Backend Configuration
 backend:
-  name: git-gateway
+  name: github
+  repo: OnelioViera/bootstrap
   branch: main
-
-# Local backend for testing (run: npx decap-server)
-local_backend: true
+  base_url: https://decap-oauth.netlify.app
+  auth_endpoint: /api/auth
 
 # Media files location
 media_folder: "images"
 public_folder: "/images"
 
-# Site URL (update after deploying)
-site_url: https://your-site.vercel.app
-display_url: https://your-site.vercel.app
-
 # Logo in admin
 logo_url: /images/lindsay.png
+
+# Editorial Workflow (optional - enables draft/review/publish)
+# publish_mode: editorial_workflow
 
 # Content Collections
 collections:
@@ -182,4 +176,3 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Primary Button Text", name: "primaryButton", widget: "string" }
           - { label: "Secondary Button Text", name: "secondaryButton", widget: "string" }
-
