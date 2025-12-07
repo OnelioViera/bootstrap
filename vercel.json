@@ -1,0 +1,23 @@
+{
+  "headers": [
+    {
+      "source": "/admin/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/(.*).yml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/yaml"
+        }
+      ]
+    }
+  ]
+}
+
