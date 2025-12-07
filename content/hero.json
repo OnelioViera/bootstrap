@@ -4,16 +4,16 @@
   "subtitle": "Lindsay Precast engineered and manufactured custom grade beams for QCELLS' Cowboy II Battery Energy Storage System project, delivering structural foundations critical to large-scale renewable energy infrastructure.",
   "buttons": [
     {
-      "text": "View Portfolio",
-      "url": "#projects",
-      "style": "primary",
-      "icon": "bi-arrow-right"
-    },
-    {
       "text": "Contact Us",
       "url": "#contact",
       "style": "secondary",
       "icon": "bi-envelope"
+    },
+    {
+      "text": "View Project",
+      "url": "#projects",
+      "style": "primary",
+      "icon": "bi-arrow-right"
     }
   ],
   "heroImage": "/images/2025-11-26_08-30-53.png"
