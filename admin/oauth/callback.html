@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OAuth Callback</title>
+    <script>
+        // This handles the OAuth callback from GitHub
+        // Pass the authorization code back to the parent window
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            const state = params.get('state');
+            
+            if (window.opener) {
+                window.opener.postMessage(
+                    { type: 'oauth', code, state },
+                    window.location.origin
+                );
+                window.close();
+            }
+        })();
+    </script>
+</head>
+<body>
+    <p>Completing authentication...</p>
+</body>
+</html>
+
