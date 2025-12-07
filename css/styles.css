@@ -1,0 +1,1074 @@
+/**
+ * Lindsay Precast - Global Styles
+ * Bootstrap 5.3 Custom Theme
+ * ============================================
+ */
+
+/* ============================================
+   BASE COLOR PALETTE (RGB Triplets)
+   Lindsay Precast Brand Colors
+   ============================================ */
+
+:root {
+    /* Primary Brand Colors */
+    --color_1: 30, 58, 110;           /* Navy Blue - Primary */
+    --color_2: 21, 42, 82;            /* Navy Blue - Dark/Hover */
+    --color_3: 45, 75, 135;           /* Navy Blue - Light */
+    --color_4: 201, 42, 42;           /* Red - Accent */
+    --color_5: 170, 30, 30;           /* Red - Dark/Hover */
+    --color_6: 220, 70, 70;           /* Red - Light */
+    
+    /* Neutral Colors */
+    --color_7: 255, 255, 255;         /* White */
+    --color_8: 248, 250, 252;         /* Off-White/Muted */
+    --color_9: 241, 245, 249;         /* Light Gray */
+    --color_10: 226, 232, 240;        /* Border Gray */
+    --color_11: 148, 163, 184;        /* Muted Text */
+    --color_12: 100, 116, 139;        /* Secondary Text */
+    --color_13: 51, 65, 85;           /* Dark Gray */
+    --color_14: 30, 41, 59;           /* Darker Gray */
+    --color_15: 15, 23, 42;           /* Near Black */
+    --color_16: 10, 15, 26;           /* Dark Background */
+    --color_17: 17, 24, 39;           /* Dark Card */
+    
+    /* Status/Accent Colors */
+    --color_18: 16, 185, 129;         /* Success/Green */
+    --color_19: 34, 197, 94;          /* Green Light */
+    --color_20: 245, 158, 11;         /* Warning/Amber */
+    --color_21: 239, 68, 68;          /* Error/Red */
+    --color_22: 139, 92, 246;         /* Purple */
+    --color_23: 59, 130, 246;         /* Blue */
+    
+    /* ============================================
+       SEMANTIC VARIABLES - BUTTONS
+       ============================================ */
+    
+    /* Primary Button */
+    --wst-button-color-fill-primary: rgb(var(--color_1));
+    --wst-button-color-border-primary: rgb(var(--color_1));
+    --wst-button-color-text-primary: rgb(var(--color_7));
+    --wst-button-color-fill-primary-hover: rgb(var(--color_2));
+    --wst-button-color-border-primary-hover: rgb(var(--color_2));
+    --wst-button-color-text-primary-hover: rgb(var(--color_7));
+    --wst-button-color-fill-primary-disabled: rgb(var(--color_11));
+    --wst-button-color-border-primary-disabled: rgb(var(--color_11));
+    --wst-button-color-text-primary-disabled: rgb(var(--color_7));
+    
+    /* Secondary Button */
+    --wst-button-color-fill-secondary: rgb(var(--color_7));
+    --wst-button-color-border-secondary: rgb(var(--color_1));
+    --wst-button-color-text-secondary: rgb(var(--color_1));
+    --wst-button-color-fill-secondary-hover: rgb(var(--color_8));
+    --wst-button-color-border-secondary-hover: rgb(var(--color_2));
+    --wst-button-color-text-secondary-hover: rgb(var(--color_2));
+    --wst-button-color-fill-secondary-disabled: rgb(var(--color_9));
+    --wst-button-color-border-secondary-disabled: rgb(var(--color_10));
+    --wst-button-color-text-secondary-disabled: rgb(var(--color_11));
+    
+    /* Accent Button (Red) */
+    --wst-button-color-fill-accent: rgb(var(--color_4));
+    --wst-button-color-border-accent: rgb(var(--color_4));
+    --wst-button-color-text-accent: rgb(var(--color_7));
+    --wst-button-color-fill-accent-hover: rgb(var(--color_5));
+    --wst-button-color-border-accent-hover: rgb(var(--color_5));
+    --wst-button-color-text-accent-hover: rgb(var(--color_7));
+    
+    /* ============================================
+       SEMANTIC VARIABLES - BACKGROUNDS & FILLS
+       ============================================ */
+    
+    --wst-color-fill-base-1: rgb(var(--color_7));
+    --wst-color-fill-base-2: rgb(var(--color_8));
+    --wst-color-fill-base-shade-1: rgb(var(--color_9));
+    --wst-color-fill-base-shade-2: rgb(var(--color_10));
+    --wst-color-fill-base-shade-3: rgb(var(--color_11));
+    
+    --wst-color-fill-accent-1: rgb(var(--color_1));
+    --wst-color-fill-accent-2: rgb(var(--color_3));
+    --wst-color-fill-accent-3: rgb(var(--color_4));
+    --wst-color-fill-accent-4: rgb(var(--color_6));
+    
+    --wst-color-fill-background-primary: rgb(var(--color_7));
+    --wst-color-fill-background-secondary: rgb(var(--color_8));
+    
+    /* ============================================
+       SEMANTIC VARIABLES - TEXT
+       ============================================ */
+    
+    --wst-color-text-primary: rgb(var(--color_15));
+    --wst-color-text-secondary: rgb(var(--color_12));
+    --wst-color-text-muted: rgb(var(--color_11));
+    --wst-color-text-inverse: rgb(var(--color_7));
+    --wst-color-title: rgb(var(--color_15));
+    --wst-color-subtitle: rgb(var(--color_13));
+    
+    /* ============================================
+       SEMANTIC VARIABLES - UI ELEMENTS
+       ============================================ */
+    
+    --wst-color-action: rgb(var(--color_1));
+    --wst-color-action-hover: rgb(var(--color_2));
+    --wst-color-disabled: rgb(var(--color_11));
+    --wst-color-line: rgb(var(--color_10));
+    --wst-color-border: rgb(var(--color_10));
+    
+    /* Status Colors */
+    --wst-color-success: rgb(var(--color_18));
+    --wst-color-warning: rgb(var(--color_20));
+    --wst-color-error: rgb(var(--color_21));
+    --wst-color-info: rgb(var(--color_23));
+    
+    /* ============================================
+       SEMANTIC VARIABLES - TYPOGRAPHY
+       ============================================ */
+    
+    --wst-font-family-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --wst-font-family-body: 'Inter', system-ui, sans-serif;
+    
+    --wst-font-style-h1: 700 3.75rem/1.1 var(--wst-font-family-heading);
+    --wst-font-style-h2: 700 3rem/1.2 var(--wst-font-family-heading);
+    --wst-font-style-h3: 600 2rem/1.3 var(--wst-font-family-heading);
+    --wst-font-style-h4: 600 1.5rem/1.4 var(--wst-font-family-heading);
+    --wst-font-style-h5: 600 1.25rem/1.4 var(--wst-font-family-heading);
+    --wst-font-style-h6: 600 1rem/1.5 var(--wst-font-family-heading);
+    
+    --wst-font-style-body-large: 400 1.125rem/1.6 var(--wst-font-family-body);
+    --wst-font-style-body-medium: 400 1rem/1.6 var(--wst-font-family-body);
+    --wst-font-style-body-small: 400 0.875rem/1.5 var(--wst-font-family-body);
+    --wst-font-style-body-x-small: 400 0.75rem/1.5 var(--wst-font-family-body);
+    
+    /* ============================================
+       SHADOWS
+       ============================================ */
+    
+    --wst-shadow-sm: 0 1px 2px rgba(var(--color_15), 0.05);
+    --wst-shadow-md: 0 4px 6px -1px rgba(var(--color_15), 0.1);
+    --wst-shadow-lg: 0 10px 15px -3px rgba(var(--color_15), 0.1);
+    --wst-shadow-xl: 0 20px 25px -5px rgba(var(--color_15), 0.1);
+    --wst-shadow-primary: 0 10px 20px -5px rgba(var(--color_1), 0.4);
+    --wst-shadow-accent: 0 10px 20px -5px rgba(var(--color_4), 0.4);
+    
+    /* ============================================
+       LEGACY VARIABLE MAPPINGS (for compatibility)
+       ============================================ */
+    
+    --primary: rgb(var(--color_1));
+    --primary-rgb: var(--color_1);
+    --primary-foreground: rgb(var(--color_7));
+    --primary-hover: rgb(var(--color_2));
+    --accent: rgb(var(--color_4));
+    --accent-rgb: var(--color_4);
+    --accent-foreground: rgb(var(--color_7));
+    --background: var(--wst-color-fill-background-primary);
+    --foreground: var(--wst-color-text-primary);
+    --card: var(--wst-color-fill-base-1);
+    --card-foreground: var(--wst-color-text-primary);
+    --muted: var(--wst-color-fill-base-2);
+    --muted-foreground: var(--wst-color-text-secondary);
+    --border: var(--wst-color-border);
+    --shadow-sm: var(--wst-shadow-sm);
+    --shadow-md: var(--wst-shadow-md);
+    --shadow-lg: var(--wst-shadow-lg);
+    --shadow-xl: var(--wst-shadow-xl);
+    
+    /* Chart/Utility Colors */
+    --chart-4: rgb(var(--color_19));
+    --chart-5: rgb(var(--color_20));
+    --chart-6: rgb(var(--color_22));
+}
+
+/* ============================================
+   DARK THEME OVERRIDES
+   ============================================ */
+[data-bs-theme="dark"] {
+    /* Background & Fills */
+    --wst-color-fill-base-1: rgb(var(--color_17));
+    --wst-color-fill-base-2: rgb(var(--color_14));
+    --wst-color-fill-base-shade-1: rgb(var(--color_13));
+    --wst-color-fill-base-shade-2: rgb(var(--color_12));
+    --wst-color-fill-base-shade-3: rgb(var(--color_11));
+    --wst-color-fill-background-primary: rgb(var(--color_16));
+    --wst-color-fill-background-secondary: rgb(var(--color_17));
+    
+    /* Text */
+    --wst-color-text-primary: rgb(var(--color_9));
+    --wst-color-text-secondary: rgb(var(--color_11));
+    --wst-color-title: rgb(var(--color_8));
+    --wst-color-subtitle: rgb(var(--color_11));
+    
+    /* UI Elements */
+    --wst-color-line: rgb(var(--color_14));
+    --wst-color-border: rgb(var(--color_14));
+    
+    /* Secondary Button (Dark) */
+    --wst-button-color-fill-secondary: rgb(var(--color_17));
+    --wst-button-color-border-secondary: rgb(var(--color_3));
+    --wst-button-color-text-secondary: rgb(var(--color_8));
+    --wst-button-color-fill-secondary-hover: rgb(var(--color_14));
+    --wst-button-color-border-secondary-hover: rgb(var(--color_1));
+    --wst-button-color-text-secondary-hover: rgb(var(--color_7));
+    
+    /* Shadows */
+    --wst-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --wst-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --wst-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --wst-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    
+    /* Legacy Mappings */
+    --background: var(--wst-color-fill-background-primary);
+    --foreground: var(--wst-color-text-primary);
+    --card: var(--wst-color-fill-base-1);
+    --card-foreground: var(--wst-color-text-primary);
+    --muted: var(--wst-color-fill-base-2);
+    --muted-foreground: var(--wst-color-text-secondary);
+    --border: var(--wst-color-border);
+    --shadow-sm: var(--wst-shadow-sm);
+    --shadow-md: var(--wst-shadow-md);
+    --shadow-lg: var(--wst-shadow-lg);
+    --shadow-xl: var(--wst-shadow-xl);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+    border-color: var(--wst-color-border);
+}
+
+body {
+    font-family: var(--wst-font-family-body);
+    background-color: var(--wst-color-fill-background-primary);
+    color: var(--wst-color-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 { font: var(--wst-font-style-h1); color: var(--wst-color-title); }
+h2 { font: var(--wst-font-style-h2); color: var(--wst-color-title); }
+h3 { font: var(--wst-font-style-h3); color: var(--wst-color-title); }
+h4 { font: var(--wst-font-style-h4); color: var(--wst-color-title); }
+h5 { font: var(--wst-font-style-h5); color: var(--wst-color-title); }
+h6 { font: var(--wst-font-style-h6); color: var(--wst-color-title); }
+
+p { font: var(--wst-font-style-body-medium); }
+
+.text-body-large { font: var(--wst-font-style-body-large); }
+.text-body-medium { font: var(--wst-font-style-body-medium); }
+.text-body-small { font: var(--wst-font-style-body-small); }
+.text-body-x-small { font: var(--wst-font-style-body-x-small); }
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+.animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+
+.animate-fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.animate-fade-in.visible {
+    opacity: 1;
+}
+
+.animate-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.animate-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.animate-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
+.site-header {
+    background-color: var(--wst-color-fill-base-1);
+    border-bottom: 1px solid var(--wst-color-line);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+    box-shadow: var(--wst-shadow-lg);
+}
+
+.brand-text {
+    font: var(--wst-font-style-h5);
+    color: var(--wst-color-title);
+}
+
+/* Logo Styling */
+.brand-logo {
+    height: 40px;
+    width: auto;
+}
+
+.brand-logo-footer {
+    height: 50px;
+    width: auto;
+}
+
+.brand-logo-mobile {
+    height: 32px;
+    width: auto;
+}
+
+.nav-link-custom {
+    font: var(--wst-font-style-body-small);
+    font-weight: 500;
+    color: var(--wst-color-text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link-custom::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--wst-color-action);
+    transition: width 0.3s ease;
+}
+
+.nav-link-custom:hover::after {
+    width: 100%;
+}
+
+.nav-link-custom:hover {
+    color: var(--wst-color-action);
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--wst-color-line);
+    background-color: var(--wst-color-fill-base-shade-1);
+    color: var(--wst-color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--wst-color-fill-accent-1);
+    color: var(--wst-color-text-inverse);
+    border-color: var(--wst-color-fill-accent-1);
+    transform: rotate(15deg);
+}
+
+.theme-toggle i {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+/* ============================================
+   BUTTONS - Using WST Variables
+   ============================================ */
+
+/* Primary Button */
+.btn-primary-gradient {
+    background: linear-gradient(135deg, var(--wst-button-color-fill-primary) 0%, rgba(var(--color_1), 0.9) 100%);
+    border: 2px solid var(--wst-button-color-border-primary);
+    color: var(--wst-button-color-text-primary);
+    box-shadow: var(--wst-shadow-primary);
+    font: var(--wst-font-style-body-medium);
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-gradient:hover {
+    background: linear-gradient(135deg, var(--wst-button-color-fill-primary-hover) 0%, rgba(var(--color_2), 0.95) 100%);
+    border-color: var(--wst-button-color-border-primary-hover);
+    color: var(--wst-button-color-text-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(var(--color_1), 0.5);
+}
+
+.btn-primary-gradient:disabled {
+    background: var(--wst-button-color-fill-primary-disabled);
+    border-color: var(--wst-button-color-border-primary-disabled);
+    color: var(--wst-button-color-text-primary-disabled);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary Button */
+.btn-secondary-outline {
+    background: var(--wst-button-color-fill-secondary);
+    border: 2px solid var(--wst-button-color-border-secondary);
+    color: var(--wst-button-color-text-secondary);
+    font: var(--wst-font-style-body-medium);
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-outline:hover {
+    background: var(--wst-button-color-fill-secondary-hover);
+    border-color: var(--wst-button-color-border-secondary-hover);
+    color: var(--wst-button-color-text-secondary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary-outline:disabled {
+    background: var(--wst-button-color-fill-secondary-disabled);
+    border-color: var(--wst-button-color-border-secondary-disabled);
+    color: var(--wst-button-color-text-secondary-disabled);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Accent Button (Red) */
+.btn-accent-gradient {
+    background: linear-gradient(135deg, var(--wst-button-color-fill-accent) 0%, rgba(var(--color_4), 0.9) 100%);
+    border: 2px solid var(--wst-button-color-border-accent);
+    color: var(--wst-button-color-text-accent);
+    box-shadow: var(--wst-shadow-accent);
+    font: var(--wst-font-style-body-medium);
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s ease;
+}
+
+.btn-accent-gradient:hover {
+    background: linear-gradient(135deg, var(--wst-button-color-fill-accent-hover) 0%, rgba(var(--color_5), 0.95) 100%);
+    border-color: var(--wst-button-color-border-accent-hover);
+    color: var(--wst-button-color-text-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(var(--color_4), 0.5);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero-section {
+    background: linear-gradient(135deg, rgba(var(--color_1), 0.03) 0%, rgba(var(--color_4), 0.03) 50%, rgba(var(--color_22), 0.03) 100%);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(var(--color_1), 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .hero-section {
+        padding: 8rem 0;
+    }
+}
+
+/* Badge Styles */
+.badge-outline {
+    background: transparent;
+    border: 1px solid;
+    font: var(--wst-font-style-body-small);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.badge-outline:hover {
+    transform: translateY(-1px);
+}
+
+.badge-primary {
+    border-color: var(--wst-color-fill-accent-1);
+    color: var(--wst-color-fill-accent-1);
+}
+
+.badge-primary:hover {
+    background-color: rgba(var(--color_1), 0.1);
+}
+
+.badge-accent {
+    border-color: var(--wst-color-fill-accent-3);
+    color: var(--wst-color-fill-accent-3);
+}
+
+.badge-accent:hover {
+    background-color: rgba(var(--color_4), 0.1);
+}
+
+.badge-secondary {
+    background-color: rgba(var(--color_1), 0.1);
+    color: var(--wst-color-fill-accent-1);
+    border: none;
+    font: var(--wst-font-style-body-small);
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.badge-accent-bg {
+    background-color: rgba(var(--color_4), 0.1);
+    color: var(--wst-color-fill-accent-3);
+    border: none;
+    font: var(--wst-font-style-body-small);
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.badge-success {
+    background-color: rgba(var(--color_18), 0.1);
+    color: var(--wst-color-success);
+    border: none;
+    font: var(--wst-font-style-body-small);
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+}
+
+/* Headings */
+.heading-xl {
+    font: var(--wst-font-style-h1);
+    letter-spacing: -0.025em;
+    color: var(--wst-color-title);
+}
+
+@media (max-width: 767px) {
+    .heading-xl {
+        font-size: 2.5rem;
+    }
+}
+
+.heading-lg {
+    font: var(--wst-font-style-h2);
+    letter-spacing: -0.025em;
+    color: var(--wst-color-title);
+}
+
+@media (max-width: 767px) {
+    .heading-lg {
+        font-size: 1.875rem;
+    }
+}
+
+.heading-md {
+    font: var(--wst-font-style-h3);
+    color: var(--wst-color-title);
+}
+
+.heading-sm {
+    font: var(--wst-font-style-h4);
+    color: var(--wst-color-title);
+}
+
+.text-muted-custom {
+    color: var(--wst-color-text-secondary);
+}
+
+.text-action {
+    color: var(--wst-color-action);
+}
+
+.text-action:hover {
+    color: var(--wst-color-action-hover);
+}
+
+.text-success { color: var(--wst-color-success); }
+.text-warning { color: var(--wst-color-warning); }
+.text-error { color: var(--wst-color-error); }
+.text-info { color: var(--wst-color-info); }
+
+.bg-base-1 { background-color: var(--wst-color-fill-base-1); }
+.bg-base-2 { background-color: var(--wst-color-fill-base-2); }
+.bg-accent-1 { background-color: var(--wst-color-fill-accent-1); }
+.bg-accent-2 { background-color: var(--wst-color-fill-accent-2); }
+.bg-accent-3 { background-color: var(--wst-color-fill-accent-3); }
+.bg-accent-4 { background-color: var(--wst-color-fill-accent-4); }
+
+/* Stats Overlay */
+.stats-overlay {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    background: var(--wst-color-fill-base-1);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--wst-shadow-xl);
+    border: 1px solid var(--wst-color-line);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-overlay:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+}
+
+.stats-icon-bg {
+    background: linear-gradient(135deg, rgba(var(--color_18), 0.2) 0%, rgba(var(--color_18), 0.1) 100%);
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+.stats-section {
+    background-color: var(--wst-color-fill-base-1);
+    border-top: 1px solid var(--wst-color-line);
+    border-bottom: 1px solid var(--wst-color-line);
+}
+
+.stat-item {
+    position: relative;
+    padding: 1rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--wst-color-fill-accent-1) 0%, var(--wst-color-fill-accent-3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (min-width: 768px) {
+    .stat-number {
+        font-size: 3.25rem;
+    }
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.custom-card {
+    background-color: var(--wst-color-fill-base-1);
+    border: 1px solid var(--wst-color-line);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-card:hover {
+    box-shadow: var(--wst-shadow-xl);
+    transform: translateY(-8px);
+    border-color: rgba(var(--color_1), 0.3);
+}
+
+.card-icon-primary {
+    background: linear-gradient(135deg, rgba(var(--color_1), 0.15) 0%, rgba(var(--color_1), 0.05) 100%);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .card-icon-primary {
+    transform: scale(1.1);
+}
+
+.card-icon-accent {
+    background: linear-gradient(135deg, rgba(var(--color_4), 0.15) 0%, rgba(var(--color_4), 0.05) 100%);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .card-icon-accent {
+    transform: scale(1.1);
+}
+
+.card-icon-chart4 {
+    background: linear-gradient(135deg, rgba(var(--color_18), 0.15) 0%, rgba(var(--color_18), 0.05) 100%);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .card-icon-chart4 {
+    transform: scale(1.1);
+}
+
+.card-icon-chart5 {
+    background: linear-gradient(135deg, rgba(var(--color_20), 0.15) 0%, rgba(var(--color_20), 0.05) 100%);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    width: fit-content;
+}
+
+/* ============================================
+   PROJECTS SECTION
+   ============================================ */
+.projects-section {
+    background: linear-gradient(180deg, rgba(var(--color_1), 0.03) 0%, rgba(var(--color_4), 0.03) 100%);
+}
+
+.project-card {
+    background-color: var(--wst-color-fill-base-1);
+    border: 1px solid var(--wst-color-line);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    box-shadow: var(--wst-shadow-xl);
+    transform: translateY(-8px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.05);
+}
+
+.project-card .img-wrapper {
+    overflow: hidden;
+}
+
+/* ============================================
+   TESTIMONIAL
+   ============================================ */
+.testimonial-card {
+    background: linear-gradient(135deg, var(--wst-color-fill-base-1) 0%, rgba(var(--color_1), 0.02) 100%);
+    border: 2px solid rgba(var(--color_1), 0.15);
+    border-radius: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    color: rgba(var(--color_1), 0.08);
+    line-height: 1;
+}
+
+.star-icon {
+    color: var(--wst-color-warning);
+    font-size: 1.5rem;
+}
+
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(var(--color_1), 0.2);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e40af 50%, #7c3aed 100%);
+    color: var(--primary-foreground);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.btn-secondary-custom {
+    background-color: white;
+    color: var(--primary);
+    border: none;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+    background-color: #f8fafc;
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.btn-outline-light-custom {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border-radius: 0.625rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    color: white;
+}
+
+/* ============================================
+   CONTACT FORM SECTION
+   ============================================ */
+.contact-section {
+    background-color: var(--wst-color-fill-base-2);
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(var(--color_1), 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(var(--color_4), 0.05) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.contact-card {
+    background-color: var(--wst-color-fill-base-1);
+    border: 1px solid var(--wst-color-line);
+    border-radius: 1.5rem;
+    box-shadow: var(--wst-shadow-xl);
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--wst-color-fill-base-shade-1);
+    transition: all 0.3s ease;
+}
+
+.contact-info-item:hover {
+    background-color: rgba(var(--color_1), 0.05);
+    transform: translateX(4px);
+}
+
+.contact-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+    border: 2px solid var(--wst-color-line);
+    border-radius: 0.75rem;
+    background-color: var(--wst-color-fill-background-primary);
+    color: var(--wst-color-text-primary);
+    font: var(--wst-font-style-body-medium);
+    transition: all 0.3s ease;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+    border-color: var(--wst-color-action);
+    box-shadow: 0 0 0 4px rgba(var(--color_1), 0.1);
+}
+
+.form-floating > label {
+    color: var(--wst-color-text-secondary);
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--wst-color-action);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+    background-color: var(--wst-color-fill-base-1);
+    border-top: 1px solid var(--wst-color-line);
+}
+
+.footer-link {
+    color: var(--wst-color-text-secondary);
+    text-decoration: none;
+    font: var(--wst-font-style-body-small);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.footer-link:hover {
+    color: var(--wst-color-action);
+    transform: translateX(4px);
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wst-color-fill-base-shade-1);
+    color: var(--wst-color-text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--wst-color-fill-accent-1);
+    color: var(--wst-color-text-inverse);
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.img-rounded {
+    border-radius: 1rem;
+    box-shadow: var(--wst-shadow-lg);
+}
+
+.capability-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.capability-item:hover {
+    background-color: var(--wst-color-fill-base-shade-1);
+}
+
+.capability-icon {
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    height: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.capability-item:hover .capability-icon {
+    transform: scale(1.1);
+}
+
+.offcanvas {
+    background-color: var(--wst-color-fill-base-1);
+}
+
+.hero-image-wrapper {
+    position: relative;
+}
+
+.hero-image {
+    border-radius: 1rem;
+    box-shadow: var(--wst-shadow-xl);
+}
+
+@media (max-width: 767px) {
+    .stats-overlay {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Loading Animation for Images */
+.img-loading {
+    background: linear-gradient(90deg, var(--muted) 25%, rgba(var(--primary-rgb), 0.05) 50%, var(--muted) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Pulse animation for accents */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
