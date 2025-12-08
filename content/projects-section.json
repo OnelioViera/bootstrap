@@ -3,21 +3,21 @@
   "description": "Lindsay Precast manufactured 69 custom grade beams for QCELLS' Cowboy II Battery Energy Storage System, providing the structural foundations for Tesla Megapack installation. The project required specialized engineering to accommodate the weight and mounting requirements of utility-scale battery units while meeting aggressive construction schedules.",
   "cards": [
     {
-      "title": "North Georgia Solar Farm",
-      "subtitle": "5MW Installation - 2023",
+      "title": "Interior Grade Beam Dimensions",
+      "subtitle": "353.5\"L x 45\"W x 36\"H",
       "status": "In Progress",
       "image": "/images/main reb-img.png",
       "imageFit": "fill",
-      "description": "Delivered 2,400 precision-engineered grade beams for QCELLS 5MW solar installation, completed 3 weeks ahead of schedule.",
+      "description": "Producing 23 of the interior grade beams and 46 of the exterior grade beams",
       "tags": [
         {
-          "tag": "2,400 Units"
+          "tag": "Custom Rebar Cage"
         },
         {
-          "tag": "8 Weeks"
+          "tag": "4 Weeks"
         },
         {
-          "tag": "Zero Defects"
+          "tag": "Total Weight: 49,000 lbs"
         }
       ]
     },
@@ -25,8 +25,8 @@
       "title": "Tennessee Valley Project",
       "subtitle": "10MW Installation - 2024",
       "status": "In Progress",
-      "image": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80",
-      "imageFit": "fill",
+      "image": "/images/IMG_5507.jpeg",
+      "imageFit": "cover",
       "description": "Our largest QCELLS partnership to date, featuring 4,800 custom grade beams with advanced reinforcement specifications.",
       "tags": [
         {
