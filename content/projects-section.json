@@ -26,7 +26,7 @@
       "subtitle": "10MW Installation - 2024",
       "status": "In Progress",
       "image": "/images/IMG_5507.jpeg",
-      "imageFit": "fill",
+      "imageFit": "contain",
       "description": "Our largest QCELLS partnership to date, featuring 4,800 custom grade beams with advanced reinforcement specifications.",
       "tags": [
         {
