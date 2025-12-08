@@ -190,18 +190,30 @@ async function loadFeaturesContent() {
 
 async function loadProjectsContent() {
     const content = await loadContent('/content/projects-section.json');
-    if (!content) return;
+    if (!content) {
+        console.warn('Projects section content not found');
+        return;
+    }
 
     const section = document.querySelector('.projects-section');
-    if (!section) return;
+    if (!section) {
+        console.warn('Projects section element not found');
+        return;
+    }
 
     // Update section title
     const title = section.querySelector('.heading-lg');
-    if (title) title.textContent = content.title;
+    if (title && content.title) {
+        title.textContent = content.title;
+        console.log('Projects title updated:', content.title);
+    }
 
     // Update section description
     const desc = section.querySelector('.text-center .fs-5');
-    if (desc) desc.textContent = content.description;
+    if (desc && content.description) {
+        desc.textContent = content.description;
+        console.log('Projects description updated');
+    }
 }
 
 // ============================================
