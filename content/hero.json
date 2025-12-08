@@ -13,7 +13,7 @@
   "backgroundType": "image",
   "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp",
   "imageFit": "cover",
-  "videoUrl": "",
+  "videoUrl": "/videos/qcells.MP4",
   "videoPoster": "",
   "videoSettings": {
     "autoplay": true,
