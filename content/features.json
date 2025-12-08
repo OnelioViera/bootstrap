@@ -1,22 +1,22 @@
 {
   "badge": "Premier Partnership",
-  "title": "Trusted QCELLS Partner 2",
-  "description": "Our specialized expertise in grade beam solutions has made us the preferred choice for QCELLS solar farm installations across the region.",
+  "title": "Engineering Excellence for Energy Storage Infrastructure",
+  "description": "The Cowboy II BESS project required grade beams engineered to support Tesla Megapack battery units, demanding precise dimensional tolerances, reinforced concrete specifications, and coordinated delivery schedules. Lindsay Precast collaborated directly with QCELLS engineering teams to manufacture foundations that meet the exacting requirements of utility-scale battery storage systems.",
   "cards": [
     {
       "icon": "bi-shield-check",
       "title": "Precision Engineering",
-      "description": "Every grade beam is manufactured to exact specifications, ensuring perfect alignment for QCELLS solar panel installations."
+      "description": "Each grade beam was manufactured to QCELLS' structural specifications, incorporating custom rebar configurations, embed plates, and anchor bolt layouts designed specifically for Megapack mounting requirements. Dimensional accuracy within ±1/8\" ensured seamless field installation."
     },
     {
       "icon": "bi-clock",
-      "title": "Rapid Deployment",
-      "description": "Precast solutions reduce on-site installation time by 60%, accelerating project timelines and reducing costs."
+      "title": "Project Coordination",
+      "description": "Working directly with QCELLS project managers and site contractors, Lindsay Precast coordinated production schedules and delivery logistics to align with construction timelines. Sequential deliveries minimized on-site storage requirements while maintaining continuous installation progress."
     },
     {
       "icon": "bi-leaf",
-      "title": "Sustainable Materials",
-      "description": "Eco-friendly concrete mixtures and manufacturing processes align with QCELLS commitment to sustainability."
+      "title": "Quality Assurance",
+      "description": "Every grade beam underwent rigorous quality control including compressive strength testing, dimensional verification, and visual inspection. Complete documentation packages with certified test reports accompanied each shipment, ensuring full traceability and compliance with project specifications."
     }
   ]
 }
