@@ -19,6 +19,6 @@
     "autoplay": true,
     "loop": true,
     "muted": true,
-    "overlayOpacity": 0.5
+    "overlayOpacity": 1
   }
 }
