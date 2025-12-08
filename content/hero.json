@@ -10,5 +10,6 @@
       "icon": "bi-arrow-right"
     }
   ],
-  "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp"
+  "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp",
+  "imageFit": "cover"
 }

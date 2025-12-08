@@ -22,11 +22,13 @@
   "images": [
     {
       "src": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80",
-      "alt": "Manufacturing Process"
+      "alt": "Manufacturing Process",
+      "imageFit": "cover"
     },
     {
       "src": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=600&q=80",
-      "alt": "Quality Control"
+      "alt": "Quality Control",
+      "imageFit": "cover"
     }
   ]
 }

@@ -80,6 +80,17 @@ collections:
                 required: false
                 hint: "Bootstrap icon name, e.g. 'bi-arrow-right' or 'bi-play-circle'"
           - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - label: "Image Display"
+            name: "imageFit"
+            widget: "select"
+            default: "cover"
+            hint: "How the image should be displayed"
+            options:
+              - { label: "Cover (Fill, may crop)", value: "cover" }
+              - { label: "Contain (Full image, may have empty space)", value: "contain" }
+              - { label: "Fill (Stretch to fit)", value: "fill" }
+              - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
+              - { label: "None (Original size)", value: "none" }
 
   # ============================================
   # STATS SECTION
@@ -149,6 +160,17 @@ collections:
               - { label: "Subtitle", name: "subtitle", widget: "string" }
               - { label: "Status", name: "status", widget: "select", options: ["Completed", "In Progress", "Planned"], default: "In Progress" }
               - { label: "Featured Image", name: "image", widget: "image" }
+              - label: "Image Display"
+                name: "imageFit"
+                widget: "select"
+                default: "cover"
+                hint: "How the image should be displayed"
+                options:
+                  - { label: "Cover (Fill, may crop)", value: "cover" }
+                  - { label: "Contain (Full image, may have empty space)", value: "contain" }
+                  - { label: "Fill (Stretch to fit)", value: "fill" }
+                  - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
+                  - { label: "None (Original size)", value: "none" }
               - { label: "Description", name: "description", widget: "markdown" }
               - label: "Stats Tags"
                 name: "tags"
@@ -185,6 +207,17 @@ collections:
             fields:
               - { label: "Image", name: "src", widget: "image" }
               - { label: "Alt Text", name: "alt", widget: "string" }
+              - label: "Image Display"
+                name: "imageFit"
+                widget: "select"
+                default: "cover"
+                hint: "How the image should be displayed"
+                options:
+                  - { label: "Cover (Fill, may crop)", value: "cover" }
+                  - { label: "Contain (Full image, may have empty space)", value: "contain" }
+                  - { label: "Fill (Stretch to fit)", value: "fill" }
+                  - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
+                  - { label: "None (Original size)", value: "none" }
 
   # ============================================
   # TESTIMONIALS

@@ -88,10 +88,17 @@ async function loadHeroContent() {
         });
     }
 
-    // Update hero image
+    // Update hero image with fit option
     const heroImg = document.querySelector('.hero-section .hero-image');
     if (heroImg && content.heroImage) {
         heroImg.src = content.heroImage;
+        
+        // Apply image fit style
+        if (content.imageFit) {
+            heroImg.style.objectFit = content.imageFit;
+        } else {
+            heroImg.style.objectFit = 'cover'; // Default
+        }
     }
 
     // Show hero content (fade in)
@@ -260,12 +267,16 @@ function createProjectCard(project, index) {
         `<span class="badge-outline badge-primary small">${t.tag}</span>`
     ).join('') : '';
 
+    // Apply image fit style
+    const imageFit = project.imageFit || 'cover';
+    
     col.innerHTML = `
         <div class="project-card h-100">
             <div class="img-wrapper">
                 <img 
                     src="${project.image}" 
                     alt="${project.title}"
+                    style="object-fit: ${imageFit};"
                 >
             </div>
             <div class="p-4">
