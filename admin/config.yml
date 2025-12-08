@@ -36,7 +36,7 @@ collections:
         file: "content/settings.json"
         fields:
           - { label: "Site Title", name: "siteTitle", widget: "string", default: "Lindsay Precast" }
-          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Site Description", name: "siteDescription", widget: "markdown" }
           - { label: "Phone Number", name: "phone", widget: "string" }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Address", name: "address", widget: "string" }
@@ -54,7 +54,7 @@ collections:
         fields:
           - { label: "Badge Text", name: "badge", widget: "string", default: "Industry Leader" }
           - { label: "Main Title", name: "title", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - { label: "Subtitle", name: "subtitle", widget: "markdown" }
           - label: "Buttons"
             name: "buttons"
             widget: "list"
@@ -115,14 +115,14 @@ collections:
         fields:
           - { label: "Section Badge", name: "badge", widget: "string" }
           - { label: "Section Title", name: "title", widget: "string" }
-          - { label: "Section Description", name: "description", widget: "text" }
+          - { label: "Section Description", name: "description", widget: "markdown" }
           - label: "Feature Cards"
             name: "cards"
             widget: "list"
             fields:
               - { label: "Icon (Bootstrap Icon class)", name: "icon", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Description", name: "description", widget: "markdown" }
 
   # ============================================
   # PROJECTS
@@ -137,7 +137,7 @@ collections:
       - { label: "Subtitle", name: "subtitle", widget: "string" }
       - { label: "Status", name: "status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
       - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Description", name: "description", widget: "markdown" }
       - label: "Stats Tags"
         name: "tags"
         widget: "list"
@@ -158,14 +158,14 @@ collections:
         fields:
           - { label: "Section Badge", name: "badge", widget: "string" }
           - { label: "Section Title", name: "title", widget: "string" }
-          - { label: "Section Description", name: "description", widget: "text" }
+          - { label: "Section Description", name: "description", widget: "markdown" }
           - label: "Capability Items"
             name: "items"
             widget: "list"
             fields:
               - { label: "Icon (Bootstrap Icon class)", name: "icon", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Description", name: "description", widget: "markdown" }
           - label: "Images"
             name: "images"
             widget: "list"
@@ -183,7 +183,7 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Quote", name: "quote", widget: "markdown" }
       - { label: "Author Name", name: "author", widget: "string" }
       - { label: "Author Title", name: "authorTitle", widget: "string" }
       - { label: "Author Photo", name: "photo", widget: "image", required: false }
@@ -201,6 +201,6 @@ collections:
         file: "content/cta.json"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Description", name: "description", widget: "markdown" }
           - { label: "Primary Button Text", name: "primaryButton", widget: "string" }
           - { label: "Secondary Button Text", name: "secondaryButton", widget: "string" }
