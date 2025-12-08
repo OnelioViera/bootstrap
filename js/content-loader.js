@@ -203,16 +203,29 @@ async function loadProjectsContent() {
 
     // Update section title
     const title = section.querySelector('.heading-lg');
-    if (title && content.title) {
-        title.textContent = content.title;
-        console.log('Projects title updated:', content.title);
+    if (title) {
+        if (content.title) {
+            title.textContent = content.title;
+            console.log('Projects title updated:', content.title);
+        } else {
+            console.warn('Projects title not found in content');
+        }
+    } else {
+        console.warn('Projects title element not found in DOM');
     }
 
-    // Update section description
-    const desc = section.querySelector('.text-center .fs-5');
-    if (desc && content.description) {
-        desc.textContent = content.description;
-        console.log('Projects description updated');
+    // Update section description - more specific selector
+    const textCenter = section.querySelector('.text-center');
+    const desc = textCenter ? textCenter.querySelector('p.fs-5') : null;
+    if (desc) {
+        if (content.description) {
+            desc.textContent = content.description;
+            console.log('Projects description updated');
+        } else {
+            console.warn('Projects description not found in content');
+        }
+    } else {
+        console.warn('Projects description element not found in DOM');
     }
 }
 
