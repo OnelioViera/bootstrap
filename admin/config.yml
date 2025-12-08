@@ -136,28 +136,27 @@ collections:
         fields:
           - { label: "Section Title", name: "title", widget: "string", default: "Featured QCELLS Projects" }
           - { label: "Section Description", name: "description", widget: "markdown" }
-
-  # ============================================
-  # PROJECTS
-  # ============================================
-  - name: "projects"
-    label: "Projects"
-    folder: "content/projects"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Project Name", name: "title", widget: "string" }
-      - { label: "Subtitle", name: "subtitle", widget: "string" }
-      - { label: "Status", name: "status", widget: "select", options: ["Completed", "In Progress", "Planned"] }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - label: "Stats Tags"
-        name: "tags"
-        widget: "list"
-        fields:
-          - { label: "Tag", name: "tag", widget: "string" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
+          - label: "Project Cards"
+            name: "cards"
+            widget: "list"
+            min: 0
+            max: 10
+            collapsed: true
+            summary: "{{fields.title}} - {{fields.status}}"
+            label_singular: "Project Card"
+            fields:
+              - { label: "Project Name", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Status", name: "status", widget: "select", options: ["Completed", "In Progress", "Planned"], default: "In Progress" }
+              - { label: "Featured Image", name: "image", widget: "image" }
+              - { label: "Description", name: "description", widget: "markdown" }
+              - label: "Stats Tags"
+                name: "tags"
+                widget: "list"
+                min: 0
+                max: 5
+                fields:
+                  - { label: "Tag", name: "tag", widget: "string" }
 
   # ============================================
   # CAPABILITIES

@@ -203,76 +203,46 @@ async function loadProjectsContent() {
 
     // Update section title
     const title = section.querySelector('.heading-lg');
-    if (title) {
-        if (content.title) {
-            title.textContent = content.title;
-            console.log('Projects title updated:', content.title);
-        } else {
-            console.warn('Projects title not found in content');
-        }
-    } else {
-        console.warn('Projects title element not found in DOM');
+    if (title && content.title) {
+        title.textContent = content.title;
+        console.log('Projects title updated:', content.title);
     }
 
-    // Update section description - more specific selector
+    // Update section description
     const textCenter = section.querySelector('.text-center');
     const desc = textCenter ? textCenter.querySelector('p.fs-5') : null;
-    if (desc) {
-        if (content.description) {
-            desc.textContent = content.description;
-            console.log('Projects description updated');
-        } else {
-            console.warn('Projects description not found in content');
-        }
-    } else {
-        console.warn('Projects description element not found in DOM');
+    if (desc && content.description) {
+        desc.textContent = content.description;
+        console.log('Projects description updated');
     }
 
-    // Load individual project cards
-    await loadProjectCards();
+    // Load project cards from the same content file
+    if (content.cards && content.cards.length > 0) {
+        loadProjectCardsFromContent(content.cards);
+    }
 }
 
 // ============================================
-// LOAD PROJECT CARDS DYNAMICALLY
+// LOAD PROJECT CARDS FROM CONTENT
 // ============================================
 
-async function loadProjectCards() {
+function loadProjectCardsFromContent(cards) {
     const projectsContainer = document.querySelector('.projects-section .row.g-4');
     if (!projectsContainer) {
         console.warn('Projects container not found');
         return;
     }
 
-    // Load the projects manifest
-    const manifest = await loadContent('/content/projects-manifest.json');
-    if (!manifest || !manifest.projects) {
-        console.warn('Projects manifest not found');
-        return;
-    }
-
     // Clear existing cards
     projectsContainer.innerHTML = '';
 
-    // Load all projects
-    const projects = [];
-    for (const filename of manifest.projects) {
-        const project = await loadContent(`/content/projects/${filename}.json`);
-        if (project) {
-            projects.push(project);
-        }
-    }
-
-    // Filter featured projects and sort by order field
-    const featuredProjects = projects.filter(p => p.featured !== false);
-    featuredProjects.sort((a, b) => (a.order || 0) - (b.order || 0));
-
     // Render each project card
-    featuredProjects.forEach((project, index) => {
+    cards.forEach((project, index) => {
         const card = createProjectCard(project, index);
         projectsContainer.appendChild(card);
     });
 
-    console.log(`Loaded ${featuredProjects.length} project cards`);
+    console.log(`Loaded ${cards.length} project cards`);
 }
 
 function createProjectCard(project, index) {
