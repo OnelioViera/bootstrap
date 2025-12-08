@@ -125,6 +125,19 @@ collections:
               - { label: "Description", name: "description", widget: "markdown" }
 
   # ============================================
+  # PROJECTS SECTION
+  # ============================================
+  - name: "projects_section"
+    label: "Projects Section"
+    files:
+      - name: "projects_section_content"
+        label: "Section Content"
+        file: "content/projects-section.json"
+        fields:
+          - { label: "Section Title", name: "title", widget: "string", default: "Featured QCELLS Projects" }
+          - { label: "Section Description", name: "description", widget: "markdown" }
+
+  # ============================================
   # PROJECTS
   # ============================================
   - name: "projects"
