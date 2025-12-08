@@ -14,13 +14,13 @@
   "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp",
   "imageFit": "cover",
   "videoUrl": "/videos/qcells.MP4",
-  "videoPoster": "/images/Tesla-Megapack-768x480.jpg.webp",
+  "videoPoster": "",
   "videoSettings": {
     "autoplay": true,
     "loop": true,
     "muted": true,
-    "playbackSpeed": "1",
+    "playbackSpeed": "0.75",
     "overlayType": "gradient",
-    "overlayOpacity": 0.5
+    "overlayOpacity": 1
   }
 }
