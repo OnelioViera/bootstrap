@@ -10,6 +10,15 @@
       "icon": "bi-arrow-right"
     }
   ],
+  "backgroundType": "image",
   "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp",
-  "imageFit": "cover"
+  "imageFit": "cover",
+  "videoUrl": "",
+  "videoPoster": "",
+  "videoSettings": {
+    "autoplay": true,
+    "loop": true,
+    "muted": true,
+    "overlayOpacity": 0.5
+  }
 }

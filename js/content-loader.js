@@ -88,16 +88,68 @@ async function loadHeroContent() {
         });
     }
 
-    // Update hero image with fit option
-    const heroImg = document.querySelector('.hero-section .hero-image');
-    if (heroImg && content.heroImage) {
-        heroImg.src = content.heroImage;
+    // Handle background (image or video)
+    const heroSection = document.querySelector('.hero-section');
+    
+    if (content.backgroundType === 'video' && content.videoUrl) {
+        // Create video background
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'hero-video-background';
         
-        // Apply image fit style
-        if (content.imageFit) {
-            heroImg.style.objectFit = content.imageFit;
-        } else {
-            heroImg.style.objectFit = 'cover'; // Default
+        // Create video element
+        const video = document.createElement('video');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'auto');
+        
+        // Apply settings from CMS
+        const settings = content.videoSettings || {};
+        if (settings.autoplay !== false) video.setAttribute('autoplay', '');
+        if (settings.loop !== false) video.setAttribute('loop', '');
+        if (settings.muted !== false) video.setAttribute('muted', '');
+        
+        // Set poster image for mobile/fallback
+        if (content.videoPoster) {
+            video.setAttribute('poster', content.videoPoster);
+            videoContainer.style.backgroundImage = `url(${content.videoPoster})`;
+        }
+        
+        // Add video source
+        const source = document.createElement('source');
+        source.src = content.videoUrl;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        
+        videoContainer.appendChild(video);
+        
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'hero-video-overlay';
+        if (settings.overlayOpacity !== undefined) {
+            overlay.style.setProperty('--overlay-opacity', settings.overlayOpacity);
+        }
+        videoContainer.appendChild(overlay);
+        
+        // Insert at beginning of hero section
+        if (heroSection) {
+            heroSection.insertBefore(videoContainer, heroSection.firstChild);
+            heroSection.style.position = 'relative';
+        }
+        
+        // Add video controls (play/pause button)
+        addVideoControls(video);
+        
+    } else if (content.heroImage) {
+        // Use image background (existing functionality)
+        const heroImg = document.querySelector('.hero-section .hero-image');
+        if (heroImg) {
+            heroImg.src = content.heroImage;
+            
+            // Apply image fit style
+            if (content.imageFit) {
+                heroImg.style.objectFit = content.imageFit;
+            } else {
+                heroImg.style.objectFit = 'cover'; // Default
+            }
         }
     }
 
@@ -106,6 +158,54 @@ async function loadHeroContent() {
     if (heroContent) {
         heroContent.classList.add('loaded');
     }
+}
+
+// ============================================
+// VIDEO CONTROLS
+// ============================================
+
+function addVideoControls(video) {
+    if (!video) return;
+    
+    // Create control button
+    const controlBtn = document.createElement('button');
+    controlBtn.className = 'video-control-btn';
+    controlBtn.id = 'videoToggle';
+    controlBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+    controlBtn.setAttribute('aria-label', 'Toggle video playback');
+    
+    // Add to page
+    document.body.appendChild(controlBtn);
+    
+    // Show button only if video is playing
+    video.addEventListener('playing', () => {
+        controlBtn.style.display = 'flex';
+    });
+    
+    // Handle click
+    controlBtn.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            controlBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            controlBtn.setAttribute('aria-label', 'Pause video');
+        } else {
+            video.pause();
+            controlBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            controlBtn.setAttribute('aria-label', 'Play video');
+        }
+    });
+    
+    // Hide button on mobile
+    const checkMobile = () => {
+        if (window.innerWidth <= 768) {
+            controlBtn.style.display = 'none';
+        } else if (!video.paused) {
+            controlBtn.style.display = 'flex';
+        }
+    };
+    
+    window.addEventListener('resize', checkMobile);
+    checkMobile();
 }
 
 // ============================================

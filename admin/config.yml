@@ -79,11 +79,20 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Bootstrap icon name, e.g. 'bi-arrow-right' or 'bi-play-circle'"
-          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - label: "Background Type"
+            name: "backgroundType"
+            widget: "select"
+            default: "image"
+            hint: "Choose between static image or video background"
+            options:
+              - { label: "Static Image", value: "image" }
+              - { label: "Video Background", value: "video" }
+          - { label: "Hero Image", name: "heroImage", widget: "image", required: false, hint: "Used when Background Type is 'image'" }
           - label: "Image Display"
             name: "imageFit"
             widget: "select"
             default: "cover"
+            required: false
             hint: "How the image should be displayed"
             options:
               - { label: "Cover (Fill, may crop)", value: "cover" }
@@ -91,6 +100,19 @@ collections:
               - { label: "Fill (Stretch to fit)", value: "fill" }
               - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
               - { label: "None (Original size)", value: "none" }
+          - { label: "Background Video URL", name: "videoUrl", widget: "string", required: false, hint: "MP4 video file path (e.g., /videos/hero.mp4). Only used when Background Type is 'video'" }
+          - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false, hint: "Fallback image shown on mobile or before video loads" }
+          - label: "Video Settings"
+            name: "videoSettings"
+            widget: "object"
+            collapsed: true
+            required: false
+            hint: "Configure video playback options"
+            fields:
+              - { label: "Autoplay", name: "autoplay", widget: "boolean", default: true, hint: "Start playing automatically" }
+              - { label: "Loop", name: "loop", widget: "boolean", default: true, hint: "Repeat video continuously" }
+              - { label: "Muted", name: "muted", widget: "boolean", default: true, hint: "Play without sound (required for autoplay)" }
+              - { label: "Overlay Opacity", name: "overlayOpacity", widget: "number", min: 0, max: 1, step: 0.1, default: 0.5, hint: "Darkness of overlay (0 = transparent, 1 = opaque)" }
 
   # ============================================
   # STATS SECTION
