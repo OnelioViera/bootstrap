@@ -17,6 +17,12 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
+# Additional media folders
+media_library:
+  name: uploadcare
+  config:
+    publicKey: demopublickey
+
 # Logo in admin
 logo_url: /images/lindsay.png
 
@@ -100,7 +106,7 @@ collections:
               - { label: "Fill (Stretch to fit)", value: "fill" }
               - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
               - { label: "None (Original size)", value: "none" }
-          - { label: "Background Video URL", name: "videoUrl", widget: "string", required: false, hint: "MP4 video file path (e.g., /videos/hero.mp4). Only used when Background Type is 'video'" }
+          - { label: "Background Video URL", name: "videoUrl", widget: "file", required: false, media_folder: "/videos", hint: "Upload MP4 video file. Only used when Background Type is 'video'" }
           - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false, hint: "Fallback image shown on mobile or before video loads" }
           - label: "Video Settings"
             name: "videoSettings"
