@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Debug - See What's Actually Loading</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        h1 { color: #4ec9b0; margin-bottom: 30px; }
+        h2 { color: #dcdcaa; margin-top: 30px; border-bottom: 2px solid #3e3e3e; padding-bottom: 10px; }
+        .file-section {
+            background: #252526;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #007acc;
+        }
+        .file-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4fc1ff;
+            margin-bottom: 15px;
+        }
+        .meta {
+            color: #858585;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        pre {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #3e3e3e;
+        }
+        .highlight {
+            background: #264f78;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 10px 10px 0;
+            font-family: system-ui;
+        }
+        button:hover { background: #1177bb; }
+        .status {
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-family: system-ui;
+        }
+        .loading { background: #1a3a52; color: #9cdcfe; }
+        .success { background: #1a3d2e; color: #4ec9b0; }
+        .error { background: #4b1818; color: #f48771; }
+        .warning { background: #4d4d1a; color: #dcdcaa; }
+        .info-box {
+            background: #2d2d30;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #007acc;
+        }
+        .info-box h3 { 
+            margin-top: 0; 
+            color: #569cd6;
+        }
+        .cache-info {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #3e3e42;
+            border-radius: 4px;
+            margin: 5px 5px 5px 0;
+            font-size: 12px;
+        }
+        a { color: #4fc1ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Content Debug Tool</h1>
+    <p>This tool shows exactly what content is being loaded from the server and helps diagnose caching issues.</p>
+
+    <div class="info-box">
+        <h3>💡 How to Use</h3>
+        <ol>
+            <li>Make a change in CMS and save it</li>
+            <li>Wait for deployment (check <a href="/deployment-status.html">deployment status</a>)</li>
+            <li>Click "🔄 Reload All Content" below</li>
+            <li>Compare what's shown here with what you saved in CMS</li>
+            <li>If they don't match, there's a caching issue</li>
+        </ol>
+    </div>
+
+    <div>
+        <button onclick="loadAllContent()">🔄 Reload All Content</button>
+        <button onclick="clearBrowserCache()">🗑️ Clear Browser Cache</button>
+        <button onclick="window.location.href='/'">🏠 Go to Site</button>
+        <button onclick="window.location.href='/admin/'">⚙️ Go to CMS</button>
+    </div>
+
+    <div id="status" class="status loading">
+        Ready to load content...
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        const contentFiles = [
+            { path: '/content/hero.json', name: 'Hero Section' },
+            { path: '/content/projects-section.json', name: 'Projects Section' },
+            { path: '/content/capabilities.json', name: 'Capabilities' },
+            { path: '/content/features.json', name: 'Features' },
+            { path: '/content/stats.json', name: 'Stats' },
+            { path: '/content/cta.json', name: 'Call to Action' },
+            { path: '/content/settings.json', name: 'Site Settings' }
+        ];
+
+        async function loadAllContent() {
+            const statusDiv = document.getElementById('status');
+            const resultsDiv = document.getElementById('results');
+            
+            statusDiv.className = 'status loading';
+            statusDiv.textContent = '⏳ Loading all content files with cache busting...';
+            resultsDiv.innerHTML = '';
+
+            let hasErrors = false;
+
+            for (const file of contentFiles) {
+                const section = document.createElement('div');
+                section.className = 'file-section';
+                
+                try {
+                    // Add cache busting with multiple parameters
+                    const cacheBust = `?t=${Date.now()}&r=${Math.random()}`;
+                    const url = file.path + cacheBust;
+                    
+                    const startTime = performance.now();
+                    const response = await fetch(url, {
+                        cache: 'no-store',
+                        headers: {
+                            'Cache-Control': 'no-cache',
+                            'Pragma': 'no-cache'
+                        }
+                    });
+                    const loadTime = (performance.now() - startTime).toFixed(2);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    
+                    const content = await response.json();
+                    const contentStr = JSON.stringify(content, null, 2);
+                    
+                    // Get cache headers from response
+                    const cacheControl = response.headers.get('Cache-Control') || 'not set';
+                    const etag = response.headers.get('ETag') || 'none';
+                    const lastModified = response.headers.get('Last-Modified') || 'unknown';
+                    
+                    section.innerHTML = `
+                        <div class="file-title">✅ ${file.name}</div>
+                        <div class="meta">
+                            <div>📁 Path: <span class="highlight">${file.path}</span></div>
+                            <div>⏱️ Load Time: ${loadTime}ms</div>
+                            <div>📦 Size: ${contentStr.length} bytes</div>
+                            <div>🕐 Last Modified: ${lastModified}</div>
+                            <div style="margin-top: 10px;">
+                                <span class="cache-info">Cache-Control: ${cacheControl}</span>
+                                <span class="cache-info">ETag: ${etag}</span>
+                            </div>
+                        </div>
+                        <pre>${escapeHtml(contentStr)}</pre>
+                    `;
+                    
+                } catch (error) {
+                    hasErrors = true;
+                    section.innerHTML = `
+                        <div class="file-title">❌ ${file.name}</div>
+                        <div class="meta">
+                            <div>📁 Path: ${file.path}</div>
+                            <div style="color: #f48771; margin-top: 10px;">Error: ${error.message}</div>
+                        </div>
+                    `;
+                }
+                
+                resultsDiv.appendChild(section);
+            }
+
+            // Check GitHub latest commit
+            try {
+                const githubResponse = await fetch('https://api.github.com/repos/OnelioViera/bootstrap/commits/main');
+                const commit = await githubResponse.json();
+                
+                const commitSection = document.createElement('div');
+                commitSection.className = 'info-box';
+                commitSection.innerHTML = `
+                    <h3>📋 Latest GitHub Commit</h3>
+                    <div><strong>SHA:</strong> ${commit.sha.substring(0, 7)}</div>
+                    <div><strong>Message:</strong> ${commit.commit.message}</div>
+                    <div><strong>Author:</strong> ${commit.commit.author.name}</div>
+                    <div><strong>Date:</strong> ${new Date(commit.commit.author.date).toLocaleString()}</div>
+                    <div style="margin-top: 10px; color: #858585;">
+                        If the content above doesn't match what you saved in CMS, 
+                        but this commit shows your latest change, then Vercel isn't deploying properly.
+                    </div>
+                `;
+                resultsDiv.appendChild(commitSection);
+            } catch (error) {
+                console.error('Failed to fetch GitHub commit:', error);
+            }
+
+            statusDiv.className = hasErrors ? 'status error' : 'status success';
+            statusDiv.textContent = hasErrors 
+                ? '⚠️ Some files failed to load - see details below'
+                : '✅ All content loaded successfully! Compare with CMS to verify.';
+        }
+
+        function clearBrowserCache() {
+            if (confirm('This will reload the page and clear browser cache. Continue?')) {
+                // Use location.reload with force flag
+                window.location.reload(true);
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Auto-load on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(loadAllContent, 500);
+        });
+    </script>
+</body>
+</html>
