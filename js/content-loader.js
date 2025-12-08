@@ -227,6 +227,96 @@ async function loadProjectsContent() {
     } else {
         console.warn('Projects description element not found in DOM');
     }
+
+    // Load individual project cards
+    await loadProjectCards();
+}
+
+// ============================================
+// LOAD PROJECT CARDS DYNAMICALLY
+// ============================================
+
+async function loadProjectCards() {
+    const projectsContainer = document.querySelector('.projects-section .row.g-4');
+    if (!projectsContainer) {
+        console.warn('Projects container not found');
+        return;
+    }
+
+    // Load the projects manifest
+    const manifest = await loadContent('/content/projects-manifest.json');
+    if (!manifest || !manifest.projects) {
+        console.warn('Projects manifest not found');
+        return;
+    }
+
+    // Clear existing cards
+    projectsContainer.innerHTML = '';
+
+    // Load all projects
+    const projects = [];
+    for (const filename of manifest.projects) {
+        const project = await loadContent(`/content/projects/${filename}.json`);
+        if (project) {
+            projects.push(project);
+        }
+    }
+
+    // Filter featured projects and sort by order field
+    const featuredProjects = projects.filter(p => p.featured !== false);
+    featuredProjects.sort((a, b) => (a.order || 0) - (b.order || 0));
+
+    // Render each project card
+    featuredProjects.forEach((project, index) => {
+        const card = createProjectCard(project, index);
+        projectsContainer.appendChild(card);
+    });
+
+    console.log(`Loaded ${featuredProjects.length} project cards`);
+}
+
+function createProjectCard(project, index) {
+    const col = document.createElement('div');
+    col.className = `col-md-6 animate-on-scroll${index > 0 ? ' delay-' + index : ''}`;
+
+    // Determine badge style based on status
+    let badgeClass = 'badge-secondary';
+    if (project.status === 'Completed') badgeClass = 'badge-accent-bg';
+    else if (project.status === 'In Progress') badgeClass = 'badge-secondary';
+    else if (project.status === 'Planned') badgeClass = 'badge-primary-bg';
+
+    // Create tags HTML
+    const tagsHtml = project.tags ? project.tags.map(t => 
+        `<span class="badge-outline badge-primary small">${t.tag}</span>`
+    ).join('') : '';
+
+    col.innerHTML = `
+        <div class="project-card h-100">
+            <div class="img-wrapper">
+                <img 
+                    src="${project.image}" 
+                    alt="${project.title}"
+                >
+            </div>
+            <div class="p-4">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <h3 class="fs-5 fw-bold mb-1">${project.title}</h3>
+                        <p class="text-muted-custom small mb-0">${project.subtitle}</p>
+                    </div>
+                    <span class="badge ${badgeClass}">${project.status}</span>
+                </div>
+                <p class="text-muted-custom mb-4">
+                    ${project.description}
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    ${tagsHtml}
+                </div>
+            </div>
+        </div>
+    `;
+
+    return col;
 }
 
 // ============================================
