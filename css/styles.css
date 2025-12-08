@@ -1220,12 +1220,45 @@ p { font: var(--wst-font-style-body-medium); }
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 1;
+}
+
+/* Overlay Type: Gradient (default) */
+.hero-video-overlay[data-overlay-type="gradient"] {
     background: linear-gradient(
         135deg,
         rgba(var(--color_1), var(--overlay-opacity, 0.5)) 0%,
         rgba(var(--color_4), var(--overlay-opacity, 0.5)) 100%
     );
-    z-index: 1;
+}
+
+/* Overlay Type: Solid Navy */
+.hero-video-overlay[data-overlay-type="solid-navy"] {
+    background: rgba(var(--color_1), var(--overlay-opacity, 0.5));
+}
+
+/* Overlay Type: Solid Red */
+.hero-video-overlay[data-overlay-type="solid-red"] {
+    background: rgba(var(--color_4), var(--overlay-opacity, 0.5));
+}
+
+/* Overlay Type: Solid Black */
+.hero-video-overlay[data-overlay-type="solid-black"] {
+    background: rgba(0, 0, 0, var(--overlay-opacity, 0.5));
+}
+
+/* Overlay Type: Radial (center glow) */
+.hero-video-overlay[data-overlay-type="radial"] {
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color_1), calc(var(--overlay-opacity, 0.5) * 0.3)) 0%,
+        rgba(var(--color_1), var(--overlay-opacity, 0.5)) 100%
+    );
+}
+
+/* Overlay Type: None */
+.hero-video-overlay[data-overlay-type="none"] {
+    background: transparent;
 }
 
 /* Ensure hero content is above video */

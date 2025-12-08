@@ -112,6 +112,31 @@ collections:
               - { label: "Autoplay", name: "autoplay", widget: "boolean", default: true, hint: "Start playing automatically" }
               - { label: "Loop", name: "loop", widget: "boolean", default: true, hint: "Repeat video continuously" }
               - { label: "Muted", name: "muted", widget: "boolean", default: true, hint: "Play without sound (required for autoplay)" }
+              - label: "Playback Speed"
+                name: "playbackSpeed"
+                widget: "select"
+                default: "1"
+                hint: "Control video playback speed"
+                options:
+                  - { label: "0.25x (Very Slow)", value: "0.25" }
+                  - { label: "0.5x (Slow)", value: "0.5" }
+                  - { label: "0.75x (Slower)", value: "0.75" }
+                  - { label: "1x (Normal)", value: "1" }
+                  - { label: "1.25x (Faster)", value: "1.25" }
+                  - { label: "1.5x (Fast)", value: "1.5" }
+                  - { label: "2x (Very Fast)", value: "2" }
+              - label: "Overlay Type"
+                name: "overlayType"
+                widget: "select"
+                default: "gradient"
+                hint: "Style of overlay on the video"
+                options:
+                  - { label: "Gradient (Navy to Red)", value: "gradient" }
+                  - { label: "Solid Navy", value: "solid-navy" }
+                  - { label: "Solid Red", value: "solid-red" }
+                  - { label: "Solid Black", value: "solid-black" }
+                  - { label: "Radial (Center Glow)", value: "radial" }
+                  - { label: "None (No Overlay)", value: "none" }
               - { label: "Overlay Opacity", name: "overlayOpacity", widget: "number", min: 0, max: 1, step: 0.1, default: 0.5, hint: "Darkness of overlay (0 = transparent, 1 = opaque)" }
 
   # ============================================

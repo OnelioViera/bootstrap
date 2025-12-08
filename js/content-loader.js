@@ -107,6 +107,14 @@ async function loadHeroContent() {
         if (settings.loop !== false) video.setAttribute('loop', '');
         if (settings.muted !== false) video.setAttribute('muted', '');
         
+        // Set playback speed
+        if (settings.playbackSpeed) {
+            video.playbackRate = parseFloat(settings.playbackSpeed);
+            video.addEventListener('loadedmetadata', () => {
+                video.playbackRate = parseFloat(settings.playbackSpeed);
+            });
+        }
+        
         // Set poster image for mobile/fallback
         if (content.videoPoster) {
             video.setAttribute('poster', content.videoPoster);
@@ -124,9 +132,16 @@ async function loadHeroContent() {
         // Create overlay
         const overlay = document.createElement('div');
         overlay.className = 'hero-video-overlay';
+        
+        // Set overlay type
+        const overlayType = settings.overlayType || 'gradient';
+        overlay.setAttribute('data-overlay-type', overlayType);
+        
+        // Set overlay opacity
         if (settings.overlayOpacity !== undefined) {
             overlay.style.setProperty('--overlay-opacity', settings.overlayOpacity);
         }
+        
         videoContainer.appendChild(overlay);
         
         // Insert at beginning of hero section

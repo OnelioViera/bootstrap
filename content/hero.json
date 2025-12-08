@@ -19,6 +19,8 @@
     "autoplay": true,
     "loop": true,
     "muted": true,
+    "playbackSpeed": "1",
+    "overlayType": "gradient",
     "overlayOpacity": 0.5
   }
 }
