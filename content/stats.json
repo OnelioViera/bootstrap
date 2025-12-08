@@ -1,9 +1,20 @@
 {
   "items": [
-    { "number": "25+", "label": "Years Experience" },
-    { "number": "15MW", "label": "Solar Capacity" },
-    { "number": "98%", "label": "Quality Rating" },
-    { "number": "100%", "label": "On-Time Delivery" }
+    {
+      "number": "69",
+      "label": "Grade Beams Custom Manufactured"
+    },
+    {
+      "number": "60 cu ft",
+      "label": "Total Concrete Delivered"
+    },
+    {
+      "number": "5 Weeks",
+      "label": "Project Duration"
+    },
+    {
+      "number": "100%",
+      "label": "On-Time Delivery"
+    }
   ]
 }
-
