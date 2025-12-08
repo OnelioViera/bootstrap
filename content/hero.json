@@ -10,11 +10,11 @@
       "icon": "bi-arrow-right"
     }
   ],
-  "backgroundType": "image",
+  "backgroundType": "video",
   "heroImage": "/images/Tesla-Megapack-768x480.jpg.webp",
   "imageFit": "cover",
   "videoUrl": "/videos/qcells.MP4",
-  "videoPoster": "",
+  "videoPoster": "/images/Tesla-Megapack-768x480.jpg.webp",
   "videoSettings": {
     "autoplay": true,
     "loop": true,
