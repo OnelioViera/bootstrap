@@ -10,18 +10,55 @@
             margin: 0;
             padding: 0;
         }
-        /* Force light mode for CMS */
+        /* Force light mode for CMS - Comprehensive override */
         :root {
-            color-scheme: light;
+            color-scheme: light !important;
         }
-        /* Override Sveltia CMS dark theme - force light background */
-        body, #nc-root, [data-theme="dark"], [class*="dark"] {
+        
+        /* Override Sveltia CMS dark theme - force light background everywhere */
+        body, 
+        #nc-root, 
+        [data-theme="dark"], 
+        [class*="dark"],
+        [class*="Dark"],
+        div[class*="theme"],
+        main,
+        aside,
+        nav,
+        section,
+        article {
             background-color: #f5f5f5 !important;
             color: #1f2937 !important;
         }
-        /* Hide the "Sign In with GitHub Using PAT" button on login screen only */
+        
+        /* Force light mode on all panels and containers */
+        [class*="panel"],
+        [class*="container"],
+        [class*="sidebar"],
+        [class*="content"],
+        [class*="editor"],
+        [class*="workspace"] {
+            background-color: #ffffff !important;
+            color: #1f2937 !important;
+        }
+        
+        /* Hide the "Sign In with GitHub Using PAT" button completely */
         [class*="login"] button[class*="secondary"],
-        [class*="sign-in"] button:nth-of-type(2) {
+        [class*="sign-in"] button:nth-of-type(2),
+        button[class*="pat"],
+        button[class*="PAT"],
+        button:has([class*="personal-access"]),
+        button:has([class*="token"]) {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Hide PAT-related text and labels */
+        [class*="login"] *:contains("PAT"),
+        [class*="login"] *:contains("Personal Access Token"),
+        [class*="sign-in"] *:contains("Using PAT") {
             display: none !important;
         }
         /* Ensure delete buttons in list items are visible */
