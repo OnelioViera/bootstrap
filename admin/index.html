@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>Content Manager | Lindsay Precast</title>
     <style>
         body {
@@ -108,6 +108,55 @@
     Works perfectly on Vercel, Netlify, or any static host.
     -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    
+    <!-- Force remove PAT button after CMS loads -->
+    <script>
+        // Function to remove PAT button
+        function removePATButton() {
+            // Wait for CMS to render
+            setTimeout(() => {
+                // Find all buttons
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(button => {
+                    const buttonText = button.textContent || button.innerText;
+                    // Remove button if it contains PAT-related text
+                    if (buttonText.includes('PAT') || 
+                        buttonText.includes('Personal Access Token') ||
+                        buttonText.includes('Using PAT')) {
+                        button.remove();
+                        console.log('PAT button removed');
+                    }
+                });
+                
+                // Also try by checking if it's the second button (PAT is usually second)
+                const loginButtons = document.querySelectorAll('[class*="login"] button, [class*="sign"] button');
+                if (loginButtons.length > 1) {
+                    // Remove all buttons except the first one (OAuth)
+                    for (let i = 1; i < loginButtons.length; i++) {
+                        loginButtons[i].remove();
+                    }
+                }
+            }, 500);
+        }
+        
+        // Run multiple times to catch dynamic rendering
+        removePATButton();
+        setTimeout(removePATButton, 1000);
+        setTimeout(removePATButton, 2000);
+        
+        // Watch for DOM changes and remove PAT button if it appears
+        const observer = new MutationObserver(() => {
+            removePATButton();
+        });
+        
+        // Start observing
+        setTimeout(() => {
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }, 100);
+    </script>
     
     <!-- 
     ============================================
