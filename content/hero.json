@@ -21,6 +21,6 @@
     "muted": true,
     "playbackSpeed": "0.75",
     "overlayType": "gradient",
-    "overlayOpacity": 1
+    "overlayOpacity": 0
   }
 }
