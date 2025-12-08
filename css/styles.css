@@ -258,6 +258,112 @@ p { font: var(--wst-font-style-body-medium); }
 .text-body-x-small { font: var(--wst-font-style-body-x-small); }
 
 /* ============================================
+   IMAGE LIGHTBOX
+   ============================================ */
+
+.image-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding: 20px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    animation: fadeInLightbox 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    animation: zoomInLightbox 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10000;
+    line-height: 1;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #ccc;
+    transform: scale(1.1);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 4px;
+    max-width: 80%;
+}
+
+@keyframes fadeInLightbox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomInLightbox {
+    from { 
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Add hover effect to clickable images */
+.hero-image:hover,
+.img-wrapper img:hover,
+.capability-image img:hover {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+/* Mobile responsive lightbox */
+@media (max-width: 768px) {
+    .lightbox-close {
+        font-size: 40px;
+        right: 20px;
+        top: 10px;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+    
+    .lightbox-caption {
+        font-size: 14px;
+        bottom: 20px;
+        padding: 8px 15px;
+    }
+}
+
+/* ============================================
    SCROLL ANIMATIONS
    ============================================ */
 .animate-on-scroll {

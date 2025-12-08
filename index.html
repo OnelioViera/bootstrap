@@ -525,5 +525,68 @@
             }
         });
     </script>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="image-lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" onclick="event.stopPropagation()">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- Image Lightbox Script -->
+    <script>
+        function openLightbox(imgElement) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImage');
+            const caption = document.getElementById('lightboxCaption');
+            
+            lightbox.style.display = 'flex';
+            lightboxImg.src = imgElement.src;
+            caption.textContent = imgElement.alt || '';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Add click handlers to images after content loads
+        function addImageClickHandlers() {
+            // Hero image
+            const heroImg = document.querySelector('.hero-section .hero-image');
+            if (heroImg) {
+                heroImg.style.cursor = 'pointer';
+                heroImg.onclick = function() { openLightbox(this); };
+            }
+
+            // Project images
+            const projectImgs = document.querySelectorAll('.projects-section .img-wrapper img');
+            projectImgs.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.onclick = function() { openLightbox(this); };
+            });
+
+            // Capability images
+            const capabilityImgs = document.querySelectorAll('.capabilities-section .capability-image img');
+            capabilityImgs.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.onclick = function() { openLightbox(this); };
+            });
+        }
+
+        // Run after page loads and content is loaded
+        window.addEventListener('load', function() {
+            setTimeout(addImageClickHandlers, 1000); // Wait for CMS content to load
+        });
+    </script>
 </body>
 </html>
