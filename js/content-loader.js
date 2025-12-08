@@ -185,6 +185,26 @@ async function loadFeaturesContent() {
 }
 
 // ============================================
+// PROJECTS SECTION
+// ============================================
+
+async function loadProjectsContent() {
+    const content = await loadContent('/content/projects-section.json');
+    if (!content) return;
+
+    const section = document.querySelector('.projects-section');
+    if (!section) return;
+
+    // Update section title
+    const title = section.querySelector('.heading-lg');
+    if (title) title.textContent = content.title;
+
+    // Update section description
+    const desc = section.querySelector('.text-center .fs-5');
+    if (desc) desc.textContent = content.description;
+}
+
+// ============================================
 // CTA SECTION
 // ============================================
 
@@ -221,6 +241,7 @@ async function loadAllContent() {
         loadSettingsContent(),
         loadStatsContent(),
         loadFeaturesContent(),
+        loadProjectsContent(),
         loadCtaContent()
     ]);
     
