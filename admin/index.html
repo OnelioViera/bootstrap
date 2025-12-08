@@ -11,25 +11,12 @@
             padding: 0;
         }
         
-        /* Hide the "Sign In with GitHub Using PAT" button completely */
+        /* Hide the "Sign In with GitHub Using PAT" button on login screen only */
         [class*="login"] button[class*="secondary"],
-        [class*="sign-in"] button:nth-of-type(2),
-        button[class*="pat"],
-        button[class*="PAT"],
-        button:has([class*="personal-access"]),
-        button:has([class*="token"]) {
+        [class*="sign-in"] button:nth-of-type(2) {
             display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
         }
         
-        /* Hide PAT-related text and labels */
-        [class*="login"] *:contains("PAT"),
-        [class*="login"] *:contains("Personal Access Token"),
-        [class*="sign-in"] *:contains("Using PAT") {
-            display: none !important;
-        }
         /* Ensure delete buttons in list items are visible */
         [class*="delete"], 
         [class*="remove"],
@@ -63,17 +50,6 @@
             width: auto !important;
             max-height: 80px !important;
             margin-bottom: 1rem;
-        }
-        
-        /* Remove sidebar/navbar background shading */
-        aside,
-        nav,
-        [class*="sidebar"],
-        [class*="nav"],
-        [class*="collections"],
-        [role="navigation"] {
-            background-color: transparent !important;
-            background: transparent !important;
         }
         
     </style>
