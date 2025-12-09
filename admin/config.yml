@@ -10,7 +10,7 @@ backend:
   name: github
   repo: OnelioViera/bootstrap
   branch: main
-  base_url: https://bootstrap-gules-eta.vercel.app
+  base_url: https://bootstrap-phi-smoky.vercel.app
   auth_endpoint: /api/auth
 
 # Media files location
