@@ -1,0 +1,370 @@
+/**
+ * CMS Configuration Parser
+ * Parses the existing config.yml structure and converts it to JavaScript objects
+ */
+
+window.CMS_CONFIG = {
+    backend: {
+        name: 'github',
+        repo: 'OnelioViera/bootstrap',
+        branch: 'main',
+        base_url: 'https://bootstrap-gules-eta.vercel.app',
+        auth_endpoint: '/api/auth'
+    },
+    
+    media_folder: 'images',
+    public_folder: '/images',
+    
+    collections: [
+        // ============================================
+        // SITE SETTINGS
+        // ============================================
+        {
+            name: 'settings',
+            label: 'Site Settings',
+            files: [
+                {
+                    name: 'general',
+                    label: 'General Settings',
+                    file: 'content/settings.json',
+                    fields: [
+                        { label: 'Site Title', name: 'siteTitle', widget: 'string', default: 'Lindsay Precast' },
+                        { label: 'Site Description', name: 'siteDescription', widget: 'markdown' },
+                        { label: 'Phone Number', name: 'phone', widget: 'string' },
+                        { label: 'Email', name: 'email', widget: 'string' },
+                        { label: 'Address', name: 'address', widget: 'string' },
+                        { label: 'Business Hours', name: 'hours', widget: 'string' }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // HERO SECTION
+        // ============================================
+        {
+            name: 'hero',
+            label: 'Hero Section',
+            files: [
+                {
+                    name: 'hero_content',
+                    label: 'Hero Content',
+                    file: 'content/hero.json',
+                    fields: [
+                        { label: 'Badge Text', name: 'badge', widget: 'string', default: 'Industry Leader' },
+                        { label: 'Main Title', name: 'title', widget: 'string' },
+                        { label: 'Subtitle', name: 'subtitle', widget: 'markdown' },
+                        {
+                            label: 'Buttons',
+                            name: 'buttons',
+                            widget: 'list',
+                            collapsed: true,
+                            fields: [
+                                { label: 'Button Text', name: 'text', widget: 'string' },
+                                { label: 'Link URL', name: 'url', widget: 'string', default: '#' },
+                                {
+                                    label: 'Style',
+                                    name: 'style',
+                                    widget: 'select',
+                                    options: [
+                                        { label: 'Primary (Filled)', value: 'primary' },
+                                        { label: 'Secondary (Outline)', value: 'secondary' },
+                                        { label: 'Accent (Red)', value: 'accent' }
+                                    ]
+                                },
+                                { label: 'Icon (optional)', name: 'icon', widget: 'string', required: false, hint: 'Bootstrap icon name, e.g. "bi-arrow-right"' }
+                            ]
+                        },
+                        {
+                            label: 'Background Type',
+                            name: 'backgroundType',
+                            widget: 'select',
+                            default: 'image',
+                            hint: 'Choose between static image or video background',
+                            options: [
+                                { label: 'Static Image', value: 'image' },
+                                { label: 'Video Background', value: 'video' }
+                            ]
+                        },
+                        { label: 'Hero Image', name: 'heroImage', widget: 'image', required: false, hint: 'Used when Background Type is "image"' },
+                        {
+                            label: 'Image Display',
+                            name: 'imageFit',
+                            widget: 'select',
+                            default: 'cover',
+                            required: false,
+                            hint: 'How the image should be displayed',
+                            options: [
+                                { label: 'Cover (Fill, may crop)', value: 'cover' },
+                                { label: 'Contain (Full image, may have empty space)', value: 'contain' },
+                                { label: 'Fill (Stretch to fit)', value: 'fill' },
+                                { label: 'Scale Down (Shrink if needed)', value: 'scale-down' },
+                                { label: 'None (Original size)', value: 'none' }
+                            ]
+                        },
+                        { label: 'Background Video URL', name: 'videoUrl', widget: 'string', required: false, hint: 'Path to MP4 video file (e.g., /videos/hero.mp4)' },
+                        { label: 'Video Poster Image', name: 'videoPoster', widget: 'image', required: false, hint: 'Fallback image shown on mobile or before video loads' },
+                        {
+                            label: 'Video Settings',
+                            name: 'videoSettings',
+                            widget: 'object',
+                            collapsed: true,
+                            required: false,
+                            hint: 'Configure video playback options',
+                            fields: [
+                                { label: 'Autoplay', name: 'autoplay', widget: 'boolean', default: true, hint: 'Start playing automatically' },
+                                { label: 'Loop', name: 'loop', widget: 'boolean', default: true, hint: 'Repeat video continuously' },
+                                { label: 'Muted', name: 'muted', widget: 'boolean', default: true, hint: 'Play without sound (required for autoplay)' },
+                                {
+                                    label: 'Playback Speed',
+                                    name: 'playbackSpeed',
+                                    widget: 'select',
+                                    default: '1',
+                                    hint: 'Control video playback speed',
+                                    options: [
+                                        { label: '0.25x (Very Slow)', value: '0.25' },
+                                        { label: '0.5x (Slow)', value: '0.5' },
+                                        { label: '0.75x (Slower)', value: '0.75' },
+                                        { label: '1x (Normal)', value: '1' },
+                                        { label: '1.25x (Faster)', value: '1.25' },
+                                        { label: '1.5x (Fast)', value: '1.5' },
+                                        { label: '2x (Very Fast)', value: '2' }
+                                    ]
+                                },
+                                {
+                                    label: 'Overlay Type',
+                                    name: 'overlayType',
+                                    widget: 'select',
+                                    default: 'gradient',
+                                    hint: 'Style of overlay on the video',
+                                    options: [
+                                        { label: 'Gradient (Navy to Red)', value: 'gradient' },
+                                        { label: 'Solid Navy', value: 'solid-navy' },
+                                        { label: 'Solid Red', value: 'solid-red' },
+                                        { label: 'Solid Black', value: 'solid-black' },
+                                        { label: 'Radial (Center Glow)', value: 'radial' },
+                                        { label: 'None (No Overlay)', value: 'none' }
+                                    ]
+                                },
+                                { label: 'Overlay Opacity', name: 'overlayOpacity', widget: 'number', min: 0, max: 1, step: 0.1, default: 0.5, hint: 'Darkness of overlay (0 = transparent, 1 = opaque)' }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // STATS SECTION
+        // ============================================
+        {
+            name: 'stats',
+            label: 'Statistics',
+            files: [
+                {
+                    name: 'stats_content',
+                    label: 'Stats Content',
+                    file: 'content/stats.json',
+                    fields: [
+                        {
+                            label: 'Statistics',
+                            name: 'items',
+                            widget: 'list',
+                            collapsed: true,
+                            fields: [
+                                { label: 'Number/Value', name: 'number', widget: 'string', hint: 'e.g. 25+, 15MW, 98%, 100%' },
+                                { label: 'Label', name: 'label', widget: 'string', hint: 'e.g. Years Experience, Solar Capacity' }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // FEATURES SECTION
+        // ============================================
+        {
+            name: 'features',
+            label: 'Features Section',
+            files: [
+                {
+                    name: 'features_content',
+                    label: 'Features Content',
+                    file: 'content/features.json',
+                    fields: [
+                        { label: 'Section Badge', name: 'badge', widget: 'string' },
+                        { label: 'Section Title', name: 'title', widget: 'string' },
+                        { label: 'Section Description', name: 'description', widget: 'markdown' },
+                        {
+                            label: 'Feature Cards',
+                            name: 'cards',
+                            widget: 'list',
+                            fields: [
+                                { label: 'Icon (Bootstrap Icon class)', name: 'icon', widget: 'string' },
+                                { label: 'Title', name: 'title', widget: 'string' },
+                                { label: 'Description', name: 'description', widget: 'markdown' }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // PROJECTS SECTION
+        // ============================================
+        {
+            name: 'projects_section',
+            label: 'Projects Section',
+            files: [
+                {
+                    name: 'projects_section_content',
+                    label: 'Section Content',
+                    file: 'content/projects-section.json',
+                    fields: [
+                        { label: 'Section Title', name: 'title', widget: 'string', default: 'Featured QCELLS Projects' },
+                        { label: 'Section Description', name: 'description', widget: 'markdown' },
+                        {
+                            label: 'Project Cards',
+                            name: 'cards',
+                            widget: 'list',
+                            collapsed: true,
+                            fields: [
+                                { label: 'Project Name', name: 'title', widget: 'string' },
+                                { label: 'Subtitle', name: 'subtitle', widget: 'string' },
+                                {
+                                    label: 'Status',
+                                    name: 'status',
+                                    widget: 'select',
+                                    options: ['Completed', 'In Progress', 'Planned'],
+                                    default: 'In Progress'
+                                },
+                                { label: 'Featured Image', name: 'image', widget: 'image' },
+                                {
+                                    label: 'Image Display',
+                                    name: 'imageFit',
+                                    widget: 'select',
+                                    default: 'cover',
+                                    hint: 'How the image should be displayed',
+                                    options: [
+                                        { label: 'Cover (Fill, may crop)', value: 'cover' },
+                                        { label: 'Contain (Full image, may have empty space)', value: 'contain' },
+                                        { label: 'Fill (Stretch to fit)', value: 'fill' },
+                                        { label: 'Scale Down (Shrink if needed)', value: 'scale-down' },
+                                        { label: 'None (Original size)', value: 'none' }
+                                    ]
+                                },
+                                { label: 'Description', name: 'description', widget: 'markdown' },
+                                {
+                                    label: 'Stats Tags',
+                                    name: 'tags',
+                                    widget: 'list',
+                                    fields: [
+                                        { label: 'Tag', name: 'tag', widget: 'string' }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // CAPABILITIES
+        // ============================================
+        {
+            name: 'capabilities',
+            label: 'Capabilities Section',
+            files: [
+                {
+                    name: 'capabilities_content',
+                    label: 'Capabilities Content',
+                    file: 'content/capabilities.json',
+                    fields: [
+                        { label: 'Section Badge', name: 'badge', widget: 'string' },
+                        { label: 'Section Title', name: 'title', widget: 'string' },
+                        { label: 'Section Description', name: 'description', widget: 'markdown' },
+                        {
+                            label: 'Capability Items',
+                            name: 'items',
+                            widget: 'list',
+                            fields: [
+                                { label: 'Icon (Bootstrap Icon class)', name: 'icon', widget: 'string' },
+                                { label: 'Title', name: 'title', widget: 'string' },
+                                { label: 'Description', name: 'description', widget: 'markdown' }
+                            ]
+                        },
+                        {
+                            label: 'Images',
+                            name: 'images',
+                            widget: 'list',
+                            fields: [
+                                { label: 'Image', name: 'src', widget: 'image' },
+                                { label: 'Alt Text', name: 'alt', widget: 'string' },
+                                {
+                                    label: 'Image Display',
+                                    name: 'imageFit',
+                                    widget: 'select',
+                                    default: 'cover',
+                                    hint: 'How the image should be displayed',
+                                    options: [
+                                        { label: 'Cover (Fill, may crop)', value: 'cover' },
+                                        { label: 'Contain (Full image, may have empty space)', value: 'contain' },
+                                        { label: 'Fill (Stretch to fit)', value: 'fill' },
+                                        { label: 'Scale Down (Shrink if needed)', value: 'scale-down' },
+                                        { label: 'None (Original size)', value: 'none' }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        
+        // ============================================
+        // TESTIMONIALS
+        // ============================================
+        {
+            name: 'testimonials',
+            label: 'Testimonials',
+            folder: 'content/testimonials',
+            create: true,
+            slug: '{{slug}}',
+            label_singular: 'Testimonial',
+            fields: [
+                { label: 'Quote', name: 'quote', widget: 'markdown' },
+                { label: 'Author Name', name: 'author', widget: 'string' },
+                { label: 'Author Title', name: 'authorTitle', widget: 'string' },
+                { label: 'Author Photo', name: 'photo', widget: 'image', required: false },
+                { label: 'Rating (1-5)', name: 'rating', widget: 'number', min: 1, max: 5, default: 5 },
+                { label: 'Featured', name: 'featured', widget: 'boolean', default: false }
+            ]
+        },
+        
+        // ============================================
+        // CTA SECTION
+        // ============================================
+        {
+            name: 'cta',
+            label: 'Call to Action',
+            files: [
+                {
+                    name: 'cta_content',
+                    label: 'CTA Content',
+                    file: 'content/cta.json',
+                    fields: [
+                        { label: 'Title', name: 'title', widget: 'string' },
+                        { label: 'Description', name: 'description', widget: 'markdown' },
+                        { label: 'Primary Button Text', name: 'primaryButton', widget: 'string' },
+                        { label: 'Secondary Button Text', name: 'secondaryButton', widget: 'string' }
+                    ]
+                }
+            ]
+        }
+    ]
+};
+
+console.log('CMS Config loaded:', window.CMS_CONFIG);

@@ -11,119 +11,90 @@
             padding: 0;
         }
         
-        /* Hide the "Sign In with GitHub Using PAT" button on login screen only */
-        [class*="login"] button[class*="secondary"],
-        [class*="sign-in"] button:nth-of-type(2) {
-            display: none !important;
+        /* Redirect page styling */
+        .redirect-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #002D5C 0%, #0066CC 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
-        /* Ensure delete buttons in list items are visible */
-        [class*="delete"], 
-        [class*="remove"],
-        button[aria-label*="delete"],
-        button[aria-label*="Delete"],
-        button[aria-label*="remove"],
-        button[aria-label*="Remove"] {
-            display: flex !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+        .redirect-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
         }
         
-        /* Make CMS logo bigger */
-        [class*="logo"] img,
-        [class*="brand"] img,
-        header img,
-        [class*="header"] img,
-        [class*="sidebar"] img:first-of-type,
-        [class*="app-bar"] img,
-        img[alt*="Lindsay"],
-        img[src*="lindsay"] {
-            height: 70px !important;
-            width: auto !important;
-            max-height: 70px !important;
+        .redirect-content img {
+            height: 80px;
+            margin-bottom: 1.5rem;
         }
         
-        /* Login page logo */
-        [class*="login"] img,
-        [class*="sign-in"] img {
-            height: 80px !important;
-            width: auto !important;
-            max-height: 80px !important;
+        .redirect-content h1 {
+            color: #002D5C;
             margin-bottom: 1rem;
         }
         
+        .redirect-content p {
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e9ecef;
+            border-top-color: #002D5C;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-    <!-- CMS will mount here -->
-    <div id="nc-root"></div>
+    <div class="redirect-container">
+        <div class="redirect-content">
+            <img src="/images/lindsay.png" alt="Lindsay Precast">
+            <h1>Redirecting to Custom CMS</h1>
+            <p>Loading your content management system...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
     
-    <!-- 
-    Using Sveltia CMS - a modern drop-in replacement for Decap CMS
-    It supports GitHub PKCE authentication (no backend server needed!)
-    Works perfectly on Vercel, Netlify, or any static host.
-    -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-    
-    <!-- Force remove PAT button after CMS loads -->
     <script>
-        // Function to remove PAT button
-        function removePATButton() {
-            // Wait for CMS to render
-            setTimeout(() => {
-                // Find all buttons
-                const buttons = document.querySelectorAll('button');
-                buttons.forEach(button => {
-                    const buttonText = button.textContent || button.innerText;
-                    // Remove button if it contains PAT-related text
-                    if (buttonText.includes('PAT') || 
-                        buttonText.includes('Personal Access Token') ||
-                        buttonText.includes('Using PAT')) {
-                        button.remove();
-                        console.log('PAT button removed');
-                    }
-                });
-                
-                // Also try by checking if it's the second button (PAT is usually second)
-                const loginButtons = document.querySelectorAll('[class*="login"] button, [class*="sign"] button');
-                if (loginButtons.length > 1) {
-                    // Remove all buttons except the first one (OAuth)
-                    for (let i = 1; i < loginButtons.length; i++) {
-                        loginButtons[i].remove();
-                    }
-                }
-            }, 500);
-        }
-        
-        // Run multiple times to catch dynamic rendering
-        removePATButton();
-        setTimeout(removePATButton, 1000);
-        setTimeout(removePATButton, 2000);
-        
-        // Watch for DOM changes and remove PAT button if it appears
-        const observer = new MutationObserver(() => {
-            removePATButton();
-        });
-        
-        // Start observing
-        setTimeout(() => {
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        }, 100);
+        // Redirect to custom CMS
+        setTimeout(function() {
+            window.location.href = 'custom-cms.html';
+        }, 1000);
     </script>
     
     <!-- 
     ============================================
-    SVELTIA CMS ADMIN PANEL
+    CUSTOM CMS - Lindsay Precast
     ============================================
     
-    TO ROLL BACK: Simply delete these folders:
-    - /admin (this folder)
-    - /content (content folder)
+    This site now uses a custom-built CMS instead of Sveltia/Decap CMS.
+    The custom CMS is located at: custom-cms.html
     
-    Your original index.html is unchanged.
+    Features:
+    - GitHub OAuth authentication
+    - Direct GitHub API integration
+    - Clean, modern interface
+    - Real-time preview
+    - Mobile responsive
+    - Based on your existing config.yml structure
+    
+    To use the old Sveltia CMS again, replace this file with:
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     ============================================
     -->
 </body>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Lindsay Precast Custom CMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="custom-cms.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <img src="/images/lindsay.png" alt="Lindsay Precast" class="login-logo">
+            <h1>Lindsay Precast CMS</h1>
+            <p class="login-subtitle">Sign in with GitHub to manage your content</p>
+            <button id="github-login-btn" class="btn btn-primary">
+                <i class="bi bi-github"></i>
+                Sign in with GitHub
+            </button>
+            <div id="login-error" class="error-message"></div>
+            <p class="login-help">
+                <small>Having trouble? Check that popups are enabled for this site.</small>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main CMS Interface -->
+    <div id="cms-interface" class="cms-interface hidden">
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav">
+            <div class="nav-left">
+                <img src="/images/lindsay.png" alt="Lindsay Precast" class="nav-logo">
+                <h1 class="nav-title">Lindsay Precast CMS</h1>
+            </div>
+            <div class="nav-right">
+                <button id="view-site-btn" class="btn btn-secondary" title="View Live Site">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    View Site
+                </button>
+                <div class="user-info">
+                    <img id="user-avatar" src="" alt="User" class="user-avatar">
+                    <span id="user-name"></span>
+                </div>
+                <button id="logout-btn" class="btn btn-text" title="Logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Content</h3>
+                    <nav class="sidebar-nav" id="content-nav">
+                        <!-- Dynamically populated -->
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Editor Area -->
+            <main class="editor-area">
+                <!-- Welcome Screen -->
+                <div id="welcome-screen" class="welcome-screen">
+                    <i class="bi bi-file-earmark-text welcome-icon"></i>
+                    <h2>Welcome to Lindsay Precast CMS</h2>
+                    <p>Select a content section from the sidebar to start editing</p>
+                </div>
+
+                <!-- Collection Editor -->
+                <div id="collection-editor" class="collection-editor hidden">
+                    <div class="editor-header">
+                        <div class="editor-header-left">
+                            <button id="back-btn" class="btn btn-text">
+                                <i class="bi bi-arrow-left"></i>
+                                Back
+                            </button>
+                            <h2 id="editor-title"></h2>
+                        </div>
+                        <div class="editor-header-right">
+                            <button id="save-btn" class="btn btn-primary" disabled>
+                                <i class="bi bi-check-lg"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="editor-content">
+                        <div class="editor-main">
+                            <div id="editor-form" class="editor-form">
+                                <!-- Dynamically generated form fields -->
+                            </div>
+                        </div>
+                        <div class="editor-sidebar">
+                            <div class="editor-info">
+                                <h3>Status</h3>
+                                <div id="editor-status" class="status-indicator">
+                                    <i class="bi bi-circle-fill"></i>
+                                    <span>No changes</span>
+                                </div>
+                                <div id="last-saved" class="last-saved">
+                                    <i class="bi bi-clock"></i>
+                                    <span>Not saved yet</span>
+                                </div>
+                            </div>
+                            <div class="editor-actions">
+                                <button id="preview-btn" class="btn btn-secondary btn-block">
+                                    <i class="bi bi-eye"></i>
+                                    Preview Changes
+                                </button>
+                                <button id="reset-btn" class="btn btn-text btn-block">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
+                                    Reset Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection List (for folder collections like testimonials) -->
+                <div id="collection-list" class="collection-list hidden">
+                    <div class="list-header">
+                        <div class="list-header-left">
+                            <h2 id="list-title"></h2>
+                            <p id="list-description"></p>
+                        </div>
+                        <div class="list-header-right">
+                            <button id="create-item-btn" class="btn btn-primary">
+                                <i class="bi bi-plus-lg"></i>
+                                Create New
+                            </button>
+                        </div>
+                    </div>
+                    <div id="items-list" class="items-list">
+                        <!-- Dynamically generated list items -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="preview-modal" class="modal hidden">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3>Preview Changes</h3>
+                <button id="close-preview-btn" class="btn-close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="preview-iframe" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="cms-config.js"></script>
+    <script src="custom-cms.js"></script>
+</body>
+</html>
