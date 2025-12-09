@@ -5,7 +5,7 @@
   "buttons": [
     {
       "text": "View Project",
-      "url": "#",
+      "url": "#projects-section",
       "style": "primary",
       "icon": ""
     }
