@@ -60,7 +60,7 @@ collections:
             widget: "list"
             min: 0
             max: 4
-            collapsed: true
+            collapsed: false
             summary: "{{fields.text}} ({{fields.style}})"
             add_to_top: false
             label_singular: "Button"
