@@ -17,19 +17,6 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
-# Additional media folders for videos
-media_library:
-  name: uploadcare
-  config:
-    publicKey: disabled
-
-# Custom media folders
-media_folders:
-  - name: videos
-    label: Videos
-    folder: videos
-    create: true
-
 # Logo in admin
 logo_url: /images/lindsay.png
 
@@ -117,13 +104,10 @@ collections:
             name: "videoUrl"
             widget: "file"
             required: false
-            media_folder: "/videos"
+            choose_url: false
+            media_folder: "videos"
             public_folder: "/videos"
-            hint: "Upload MP4 video file or drag and drop here. Video will be saved to /videos folder."
-            media_library:
-              config:
-                max_file_size: 52428800
-                allow_multiple: false
+            hint: "Drag and drop MP4 video file here or click to browse. Will be saved to /videos folder."
           - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false, hint: "Fallback image shown on mobile or before video loads" }
           - label: "Video Settings"
             name: "videoSettings"
