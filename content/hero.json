@@ -1,7 +1,7 @@
 {
   "badge": "Lindsay Precast - Industry Leader",
   "title": "QCELLS Cowboy ll Bess: Precision Grade Beams for Battery Energy Storage",
-  "subtitle": "Lindsay Precast engineered and manufactured custom grade beams for QCELLS' Cowboy II Battery Energy Storage System project, delivering structural foundations critical to large-scale renewable energy infrastructure.",
+  "subtitle": "Lindsay Precast engineered and manufactured custom grade beams for QCELLS' Cowboy II Battery Energy Storage System project, delivering structural foundations critical to large-scale renewable energy infrastructure",
   "buttons": [
     {
       "text": "View Project",
@@ -21,6 +21,6 @@
     "muted": false,
     "playbackSpeed": "0.25",
     "overlayType": "gradient",
-    "overlayOpacity": ""
+    "overlayOpacity": 1
   }
 }
