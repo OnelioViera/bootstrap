@@ -236,11 +236,21 @@
     border-color: var(--wst-color-border);
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Account for fixed header */
+}
+
 body {
     font-family: var(--wst-font-family-body);
     background-color: var(--wst-color-fill-background-primary);
     color: var(--wst-color-text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add scroll margin to all sections for proper anchor positioning */
+section[id] {
+    scroll-margin-top: 100px;
 }
 
 h1 { font: var(--wst-font-style-h1); color: var(--wst-color-title); }
