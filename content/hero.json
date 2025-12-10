@@ -21,6 +21,6 @@
     "muted": true,
     "playbackSpeed": "0.25",
     "overlayType": "solid-black",
-    "overlayOpacity": 1
+    "overlayOpacity": 0.5
   }
 }
