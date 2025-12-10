@@ -16,11 +16,11 @@
   "videoUrl": "videos/qcells.MP4",
   "videoPoster": "",
   "videoSettings": {
-    "autoplay": false,
-    "loop": false,
-    "muted": false,
+    "autoplay": true,
+    "loop": true,
+    "muted": true,
     "playbackSpeed": "0.25",
-    "overlayType": "gradient",
+    "overlayType": "solid-black",
     "overlayOpacity": 1
   }
 }
