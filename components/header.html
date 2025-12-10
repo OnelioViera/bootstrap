@@ -6,7 +6,7 @@
                 <img src="images/lindsay.png" alt="Lindsay Precast" class="brand-logo">
             </a>
             
-            <nav class="d-none d-lg-flex align-items-center gap-4">
+            <nav class="d-none d-lg-flex align-items-center gap-4" aria-label="Main navigation">
                 <a href="index.html#about" class="nav-link-custom">About</a>
                 <a href="index.html#projects" class="nav-link-custom">Project</a>
                 <a href="index.html#capabilities" class="nav-link-custom">Capabilities</a>
@@ -15,10 +15,10 @@
             
             <div class="d-flex align-items-center gap-3">
                 <!-- Dark Mode Toggle -->
-                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">
                     <i class="bi bi-moon-fill" id="themeIcon"></i>
                 </button>
-                <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
+                <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-label="Open mobile menu">
                     <i class="bi bi-list fs-4"></i>
                 </button>
             </div>
@@ -32,10 +32,10 @@
         <h5 class="offcanvas-title d-flex align-items-center">
             <img src="images/lindsay.png" alt="Lindsay Precast" class="brand-logo-mobile">
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
     </div>
     <div class="offcanvas-body">
-        <nav class="d-flex flex-column gap-3">
+        <nav class="d-flex flex-column gap-3" aria-label="Mobile navigation">
             <a href="index.html#about" class="nav-link-custom fs-5">About</a>
             <a href="index.html#projects" class="nav-link-custom fs-5">Projects</a>
             <a href="index.html#capabilities" class="nav-link-custom fs-5">Capabilities</a>
@@ -43,7 +43,7 @@
             <hr>
             <div class="d-flex align-items-center gap-2 mb-3">
                 <span class="text-muted-custom">Theme:</span>
-                <button class="theme-toggle" id="themeToggleMobile" title="Toggle dark mode">
+                <button class="theme-toggle" id="themeToggleMobile" title="Toggle dark mode" aria-label="Toggle dark mode">
                     <i class="bi bi-moon-fill" id="themeIconMobile"></i>
                 </button>
             </div>
