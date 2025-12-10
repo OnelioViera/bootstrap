@@ -39,6 +39,19 @@
           "tag": "Streamlined logistics"
         }
       ]
+    },
+    {
+      "title": "Pouring the Concrete into the Forms",
+      "subtitle": "How fun",
+      "status": "In Progress",
+      "image": "/images/2025-11-26_08-30-53.png",
+      "imageFit": "cover",
+      "description": "Still Fun",
+      "tags": [
+        {
+          "tag": "1"
+        }
+      ]
     }
   ]
 }
