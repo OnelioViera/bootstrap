@@ -98,12 +98,6 @@ async function loadHeroContent() {
     if (content.backgroundType === 'video' && content.videoUrl) {
         console.log('Creating video background...');
         
-        // Hide the default image
-        const heroImageWrapper = document.querySelector('.hero-image-wrapper');
-        if (heroImageWrapper) {
-            heroImageWrapper.style.display = 'none';
-        }
-        
         // Create video background
         const videoContainer = document.createElement('div');
         videoContainer.className = 'hero-video-background';
@@ -176,9 +170,10 @@ async function loadHeroContent() {
         
         // Add video controls (play/pause button)
         addVideoControls(video);
-        
-    } else if (content.heroImage) {
-        // Use image background (existing functionality)
+    }
+    
+    // Always update the hero image (shown on right side even with video background)
+    if (content.heroImage) {
         const heroImg = document.querySelector('.hero-section .hero-image');
         if (heroImg) {
             heroImg.src = content.heroImage;
