@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Debug - Lindsay Precast</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            color: #60a5fa;
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 10px 10px 10px 0;
+        }
+        .status.loading { background: #fbbf24; color: #000; }
+        .status.success { background: #10b981; color: #000; }
+        .status.error { background: #ef4444; color: #fff; }
+        
+        .section {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #60a5fa;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+        .card-item {
+            background: #0f172a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #60a5fa;
+        }
+        .card-item h3 {
+            margin: 0 0 10px 0;
+            color: #93c5fd;
+        }
+        .card-item p {
+            margin: 5px 0;
+            color: #cbd5e1;
+        }
+        .card-item .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        .card-item .status-badge.in-progress { background: #475569; color: #fff; }
+        .card-item .status-badge.completed { background: #dc2626; color: #fff; }
+        .card-item .status-badge.planned { background: #2563eb; color: #fff; }
+        
+        .info {
+            background: #334155;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #fbbf24;
+        }
+        pre {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+        code {
+            color: #93c5fd;
+        }
+        .timestamp {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 Projects Content Debugger</h1>
+        <p>Verify projects-section.json is loading correctly with all cards</p>
+        <div>
+            <span class="status loading" id="status">⏳ Loading...</span>
+            <span class="timestamp" id="timestamp"></span>
+        </div>
+        <button class="btn" onclick="location.reload()">🔄 Refresh</button>
+        <button class="btn" onclick="window.open('/', '_blank')">🏠 View Live Site</button>
+    </div>
+
+    <div class="section">
+        <h2>📊 Projects Section Data</h2>
+        <div id="summary"></div>
+    </div>
+
+    <div class="section">
+        <h2>🃏 Project Cards</h2>
+        <div id="cards"></div>
+    </div>
+
+    <div class="section">
+        <h2>📄 Raw JSON</h2>
+        <pre id="rawJson"><code>Loading...</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>ℹ️ Cache &amp; Network Info</h2>
+        <div id="cacheInfo"></div>
+    </div>
+
+    <script>
+        const timestamp = Date.now();
+        document.getElementById('timestamp').textContent = `Loaded at: ${new Date().toLocaleString()}`;
+
+        async function loadProjectsData() {
+            try {
+                const url = `/content/projects-section.json?t=${timestamp}`;
+                console.log('Fetching:', url);
+
+                const response = await fetch(url, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache'
+                    }
+                });
+
+                // Show cache headers
+                const cacheInfo = document.getElementById('cacheInfo');
+                cacheInfo.innerHTML = `
+                    <div class="info">
+                        <strong>Response Status:</strong> ${response.status} ${response.statusText}<br>
+                        <strong>Cache-Control:</strong> ${response.headers.get('cache-control') || 'Not set'}<br>
+                        <strong>ETag:</strong> ${response.headers.get('etag') || 'Not set'}<br>
+                        <strong>Last-Modified:</strong> ${response.headers.get('last-modified') || 'Not set'}<br>
+                        <strong>URL:</strong> <code>${url}</code>
+                    </div>
+                `;
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                // Update status
+                const statusEl = document.getElementById('status');
+                statusEl.textContent = '✅ Loaded Successfully';
+                statusEl.className = 'status success';
+
+                // Show summary
+                const summaryEl = document.getElementById('summary');
+                summaryEl.innerHTML = `
+                    <div class="info">
+                        <strong>Section Title:</strong> ${data.title || 'N/A'}<br>
+                        <strong>Description:</strong> ${data.description || 'N/A'}<br>
+                        <strong>Total Cards:</strong> ${data.cards ? data.cards.length : 0}
+                    </div>
+                `;
+
+                // Show cards
+                const cardsEl = document.getElementById('cards');
+                if (data.cards && data.cards.length > 0) {
+                    cardsEl.innerHTML = data.cards.map((card, index) => `
+                        <div class="card-item">
+                            <h3>${index + 1}. ${card.title}</h3>
+                            <p><strong>Subtitle:</strong> ${card.subtitle}</p>
+                            <p><strong>Image:</strong> <code>${card.image}</code></p>
+                            <p><strong>Image Fit:</strong> ${card.imageFit || 'cover'}</p>
+                            <p><strong>Description:</strong> ${card.description?.substring(0, 100)}...</p>
+                            <p><strong>Tags:</strong> ${card.tags ? card.tags.map(t => t.tag).join(', ') : 'None'}</p>
+                            <span class="status-badge ${card.status.toLowerCase().replace(' ', '-')}">${card.status}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    cardsEl.innerHTML = '<p style="color: #fbbf24;">⚠️ No cards found in data</p>';
+                }
+
+                // Show raw JSON
+                document.getElementById('rawJson').innerHTML = `<code>${JSON.stringify(data, null, 2)}</code>`;
+
+            } catch (error) {
+                console.error('Error loading projects:', error);
+                
+                const statusEl = document.getElementById('status');
+                statusEl.textContent = '❌ Load Failed';
+                statusEl.className = 'status error';
+
+                document.getElementById('summary').innerHTML = `
+                    <div class="info" style="border-color: #ef4444;">
+                        <strong>Error:</strong> ${error.message}
+                    </div>
+                `;
+                
+                document.getElementById('cards').innerHTML = `<p style="color: #ef4444;">Failed to load cards</p>`;
+                document.getElementById('rawJson').innerHTML = `<code style="color: #ef4444;">${error.stack}</code>`;
+            }
+        }
+
+        // Load on page load
+        loadProjectsData();
+    </script>
+</body>
+</html>
