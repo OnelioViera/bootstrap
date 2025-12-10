@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site-Wide Content Debug - Lindsay Precast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #60a5fa;
+            display: block;
+        }
+        .stat-card .label {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        .stat-card.loading .number { color: #fbbf24; }
+        .stat-card.success .number { color: #10b981; }
+        .stat-card.error .number { color: #ef4444; }
+        
+        .section {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+        }
+        .section h2 {
+            color: #60a5fa;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        .section-status.loading { background: #fbbf24; color: #000; }
+        .section-status.success { background: #10b981; color: #000; }
+        .section-status.error { background: #ef4444; color: #fff; }
+        
+        .content-box {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #60a5fa;
+        }
+        .content-box h3 {
+            color: #93c5fd;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .content-box p, .content-box ul {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .content-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-box li {
+            padding: 4px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        .content-box li:last-child {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+        .badge.primary { background: #2563eb; color: #fff; }
+        .badge.success { background: #10b981; color: #000; }
+        .badge.warning { background: #fbbf24; color: #000; }
+        .badge.danger { background: #ef4444; color: #fff; }
+        
+        .error-box {
+            background: #7f1d1d;
+            border: 2px solid #ef4444;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .error-box h3 {
+            color: #fca5a5;
+            margin-bottom: 10px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        .btn.secondary {
+            background: #475569;
+        }
+        .btn.secondary:hover {
+            background: #334155;
+        }
+        
+        .timestamp {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 15px;
+        }
+        
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+        .collapsible::before {
+            content: '▼ ';
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .collapsible.collapsed::before {
+            transform: rotate(-90deg);
+        }
+        .collapsible-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .collapsible-content.hidden {
+            max-height: 0;
+        }
+        
+        pre {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #334155;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        code {
+            color: #93c5fd;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Complete Site Content Debugger</h1>
+            <p>Comprehensive analysis of all CMS content files and their loading status</p>
+            <div class="btn-group">
+                <button class="btn" onclick="location.reload()">🔄 Refresh All Data</button>
+                <button class="btn secondary" onclick="window.open('/', '_blank')">🏠 View Live Site</button>
+                <button class="btn secondary" onclick="window.open('/admin/', '_blank')">⚙️ Open CMS</button>
+            </div>
+            <div class="timestamp" id="timestamp"></div>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">Hero Section</span>
+                </div>
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">Stats</span>
+                </div>
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">Features</span>
+                </div>
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">Projects</span>
+                </div>
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">Capabilities</span>
+                </div>
+                <div class="stat-card loading">
+                    <span class="number">⏳</span>
+                    <span class="label">CTA</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="sectionsContainer"></div>
+    </div>
+
+    <script>
+        const timestamp = Date.now();
+        document.getElementById('timestamp').textContent = `Last checked: ${new Date().toLocaleString()}`;
+
+        const contentFiles = [
+            {
+                name: 'Hero Section',
+                file: '/content/hero.json',
+                icon: '🎯',
+                checks: (data) => ({
+                    'Title': data.title,
+                    'Badge': data.badge,
+                    'Background Type': data.backgroundType,
+                    'Buttons': data.buttons?.length || 0,
+                    'Video URL': data.videoUrl || 'N/A',
+                    'Hero Image': data.heroImage || 'N/A'
+                })
+            },
+            {
+                name: 'Statistics',
+                file: '/content/stats.json',
+                icon: '📊',
+                checks: (data) => ({
+                    'Total Stats': data.items?.length || 0,
+                    'Stats': data.items?.map(s => `${s.number} - ${s.label}`).join(', ') || 'None'
+                })
+            },
+            {
+                name: 'Features Section',
+                file: '/content/features.json',
+                icon: '⭐',
+                checks: (data) => ({
+                    'Title': data.title,
+                    'Badge': data.badge,
+                    'Total Cards': data.cards?.length || 0,
+                    'Card Titles': data.cards?.map(c => c.title).join(', ') || 'None'
+                })
+            },
+            {
+                name: 'Projects Section',
+                file: '/content/projects-section.json',
+                icon: '🏗️',
+                checks: (data) => ({
+                    'Section Title': data.title,
+                    'Total Cards': data.cards?.length || 0,
+                    'Card Titles': data.cards?.map(c => c.title).join(', ') || 'None',
+                    'Statuses': data.cards?.map(c => c.status).join(', ') || 'None'
+                })
+            },
+            {
+                name: 'Capabilities',
+                file: '/content/capabilities.json',
+                icon: '🔧',
+                checks: (data) => ({
+                    'Title': data.title,
+                    'Badge': data.badge,
+                    'Total Items': data.items?.length || 0,
+                    'Total Images': data.images?.length || 0
+                })
+            },
+            {
+                name: 'CTA Section',
+                file: '/content/cta.json',
+                icon: '📢',
+                checks: (data) => ({
+                    'Title': data.title,
+                    'Primary Button': data.primaryButton,
+                    'Secondary Button': data.secondaryButton
+                })
+            },
+            {
+                name: 'Site Settings',
+                file: '/content/settings.json',
+                icon: '⚙️',
+                checks: (data) => ({
+                    'Site Title': data.siteTitle,
+                    'Phone': data.phone,
+                    'Email': data.email,
+                    'Address': data.address
+                })
+            }
+        ];
+
+        async function fetchContent(url) {
+            const response = await fetch(url + `?t=${timestamp}`, {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            return {
+                data: await response.json(),
+                headers: {
+                    status: response.status,
+                    statusText: response.statusText,
+                    cacheControl: response.headers.get('cache-control'),
+                    lastModified: response.headers.get('last-modified'),
+                    etag: response.headers.get('etag')
+                }
+            };
+        }
+
+        function createCollapsible(title, content) {
+            const id = 'collapse-' + Math.random().toString(36).substr(2, 9);
+            return `
+                <h3 class="collapsible" onclick="toggleCollapse('${id}')">${title}</h3>
+                <div id="${id}" class="collapsible-content">
+                    ${content}
+                </div>
+            `;
+        }
+
+        function toggleCollapse(id) {
+            const element = document.getElementById(id);
+            const header = element.previousElementSibling;
+            element.classList.toggle('hidden');
+            header.classList.toggle('collapsed');
+        }
+
+        async function loadAllContent() {
+            const container = document.getElementById('sectionsContainer');
+            const results = [];
+
+            for (let i = 0; i < contentFiles.length; i++) {
+                const config = contentFiles[i];
+                const section = document.createElement('div');
+                section.className = 'section';
+                section.innerHTML = `
+                    <h2>
+                        ${config.icon} ${config.name}
+                        <span class="section-status loading" id="status-${i}">⏳ Loading...</span>
+                    </h2>
+                    <div id="content-${i}">
+                        <p style="color: #94a3b8;">Loading content...</p>
+                    </div>
+                `;
+                container.appendChild(section);
+
+                try {
+                    const result = await fetchContent(config.file);
+                    results.push({ success: true, name: config.name, data: result.data });
+                    
+                    const statusEl = document.getElementById(`status-${i}`);
+                    statusEl.textContent = '✅ Loaded';
+                    statusEl.className = 'section-status success';
+
+                    const checks = config.checks(result.data);
+                    const contentEl = document.getElementById(`content-${i}`);
+                    
+                    let checksHtml = '<div class="content-box"><h3>Content Summary</h3><ul>';
+                    for (const [key, value] of Object.entries(checks)) {
+                        checksHtml += `<li><strong>${key}:</strong> ${value}</li>`;
+                    }
+                    checksHtml += '</ul></div>';
+
+                    let networkHtml = `
+                        <div class="content-box">
+                            <h3>Network & Cache Info</h3>
+                            <ul>
+                                <li><strong>Status:</strong> ${result.headers.status} ${result.headers.statusText}</li>
+                                <li><strong>Cache-Control:</strong> ${result.headers.cacheControl || 'Not set'}</li>
+                                <li><strong>Last-Modified:</strong> ${result.headers.lastModified || 'Not set'}</li>
+                                <li><strong>ETag:</strong> ${result.headers.etag || 'Not set'}</li>
+                                <li><strong>File:</strong> <code>${config.file}</code></li>
+                            </ul>
+                        </div>
+                    `;
+
+                    const rawJsonHtml = `
+                        <div class="content-box">
+                            ${createCollapsible('Raw JSON Data', `<pre><code>${JSON.stringify(result.data, null, 2)}</code></pre>`)}
+                        </div>
+                    `;
+
+                    contentEl.innerHTML = checksHtml + networkHtml + rawJsonHtml;
+
+                    // Update stat card
+                    updateStatCard(i, 'success', getStatValue(config.name, result.data));
+
+                } catch (error) {
+                    results.push({ success: false, name: config.name, error: error.message });
+                    
+                    const statusEl = document.getElementById(`status-${i}`);
+                    statusEl.textContent = '❌ Failed';
+                    statusEl.className = 'section-status error';
+
+                    const contentEl = document.getElementById(`content-${i}`);
+                    contentEl.innerHTML = `
+                        <div class="error-box">
+                            <h3>Error Loading Content</h3>
+                            <p>${error.message}</p>
+                            <p><code>${config.file}</code></p>
+                        </div>
+                    `;
+
+                    updateStatCard(i, 'error', '❌');
+                }
+            }
+
+            console.log('Load Results:', results);
+        }
+
+        function getStatValue(name, data) {
+            switch(name) {
+                case 'Hero Section':
+                    return data.buttons?.length || 0;
+                case 'Statistics':
+                    return data.items?.length || 0;
+                case 'Features Section':
+                    return data.cards?.length || 0;
+                case 'Projects Section':
+                    return data.cards?.length || 0;
+                case 'Capabilities':
+                    return data.items?.length || 0;
+                case 'CTA Section':
+                    return '✓';
+                case 'Site Settings':
+                    return '✓';
+                default:
+                    return '?';
+            }
+        }
+
+        function updateStatCard(index, status, value) {
+            const statsGrid = document.getElementById('statsGrid');
+            const card = statsGrid.children[index];
+            if (card) {
+                card.className = `stat-card ${status}`;
+                card.querySelector('.number').textContent = value;
+            }
+        }
+
+        // Auto-collapse raw JSON sections
+        setTimeout(() => {
+            document.querySelectorAll('.collapsible').forEach(el => {
+                const id = el.getAttribute('onclick').match(/'([^']+)'/)[1];
+                toggleCollapse(id);
+            });
+        }, 500);
+
+        // Start loading
+        loadAllContent();
+    </script>
+</body>
+</html>
