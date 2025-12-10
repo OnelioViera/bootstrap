@@ -19,7 +19,7 @@
     "autoplay": true,
     "loop": true,
     "muted": true,
-    "playbackSpeed": "1.5",
+    "playbackSpeed": "0.75",
     "overlayType": "solid-black",
     "overlayOpacity": 0
   }
