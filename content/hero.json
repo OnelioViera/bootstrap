@@ -11,9 +11,9 @@
     }
   ],
   "backgroundType": "video",
-  "heroImage": "videos/Tesla-Megapack-768x480.jpg.webp",
+  "heroImage": "/videos/Tesla-Megapack-768x480.jpg.webp",
   "imageFit": "cover",
-  "videoUrl": "videos/qcells.MP4",
+  "videoUrl": "/videos/qcells.MP4",
   "videoPoster": "",
   "videoSettings": {
     "autoplay": true,
