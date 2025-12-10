@@ -160,7 +160,19 @@ async function loadHeroContent() {
         if (heroSection) {
             heroSection.insertBefore(videoContainer, heroSection.firstChild);
             heroSection.style.position = 'relative';
+            console.log('Video container added to DOM');
+            console.log('Video element:', video);
+            console.log('Video source:', video.querySelector('source').src);
         }
+        
+        // Log video loading events
+        video.addEventListener('loadstart', () => console.log('Video loading started'));
+        video.addEventListener('canplay', () => console.log('Video can play'));
+        video.addEventListener('playing', () => console.log('Video is playing'));
+        video.addEventListener('error', (e) => {
+            console.error('Video error:', e);
+            console.error('Video error details:', video.error);
+        });
         
         // Add video controls (play/pause button)
         addVideoControls(video);
