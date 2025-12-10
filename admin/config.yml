@@ -17,6 +17,19 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
+# Additional media folders for videos
+media_library:
+  name: uploadcare
+  config:
+    publicKey: disabled
+
+# Custom media folders
+media_folders:
+  - name: videos
+    label: Videos
+    folder: videos
+    create: true
+
 # Logo in admin
 logo_url: /images/lindsay.png
 
@@ -100,7 +113,17 @@ collections:
               - { label: "Fill (Stretch to fit)", value: "fill" }
               - { label: "Scale Down (Shrink if needed)", value: "scale-down" }
               - { label: "None (Original size)", value: "none" }
-          - { label: "Background Video URL", name: "videoUrl", widget: "string", required: false, hint: "Path to MP4 video file (e.g., /videos/hero.mp4). Upload video to /videos folder via GitHub first, then enter path here." }
+          - label: "Background Video"
+            name: "videoUrl"
+            widget: "file"
+            required: false
+            media_folder: "/videos"
+            public_folder: "/videos"
+            hint: "Upload MP4 video file or drag and drop here. Video will be saved to /videos folder."
+            media_library:
+              config:
+                max_file_size: 52428800
+                allow_multiple: false
           - { label: "Video Poster Image", name: "videoPoster", widget: "image", required: false, hint: "Fallback image shown on mobile or before video loads" }
           - label: "Video Settings"
             name: "videoSettings"
