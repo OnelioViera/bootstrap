@@ -6,42 +6,26 @@
     <meta name="robots" content="noindex">
     <title>Lindsay Precast CMS</title>
     <style>
-        /* Hide PAT sign in button - multiple approaches */
-        button[data-sveltekit-preload-data="off"],
-        button[type="button"]:nth-of-type(2),
-        button:last-child {
+        /* Hide PAT sign in button only */
+        button[data-sveltekit-preload-data="off"] {
             display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            height: 0 !important;
-            overflow: hidden !important;
         }
     </style>
     <script>
-        // Aggressively remove PAT button
+        // Remove only the PAT button, keep the main GitHub login button
         function removePATButton() {
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => {
                 const text = button.textContent || button.innerText || '';
-                if (text.includes('PAT') || 
-                    text.includes('Personal Access Token') ||
-                    text.includes('Using PAT')) {
-                    button.style.cssText = 'display: none !important; visibility: hidden !important; height: 0 !important; opacity: 0 !important;';
+                // Only remove if it specifically mentions PAT
+                if (text.includes('PAT') || text.includes('Personal Access Token')) {
+                    button.style.display = 'none';
                     button.remove();
                 }
             });
-            
-            // Also hide by position - PAT button is usually second
-            const allButtons = document.querySelectorAll('button');
-            if (allButtons.length > 1) {
-                allButtons[1].style.cssText = 'display: none !important; visibility: hidden !important;';
-                allButtons[1].remove();
-            }
         }
         
         // Run multiple times to catch dynamically loaded content
-        window.addEventListener('DOMContentLoaded', removePATButton);
-        window.addEventListener('load', removePATButton);
         setTimeout(removePATButton, 500);
         setTimeout(removePATButton, 1000);
         setTimeout(removePATButton, 2000);
@@ -51,8 +35,7 @@
         setTimeout(() => {
             observer.observe(document.body, { 
                 childList: true, 
-                subtree: true,
-                attributes: true 
+                subtree: true
             });
         }, 100);
     </script>
