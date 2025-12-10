@@ -144,7 +144,15 @@ collections:
                   - { label: "Solid Black", value: "solid-black" }
                   - { label: "Radial (Center Glow)", value: "radial" }
                   - { label: "None (No Overlay)", value: "none" }
-              - { label: "Overlay Opacity", name: "overlayOpacity", widget: "number", min: 0, max: 1, step: 0.1, default: 0.5, hint: "Darkness of overlay (0 = transparent, 1 = opaque)" }
+              - label: "Overlay Opacity"
+                name: "overlayOpacity"
+                widget: "number"
+                value_type: "float"
+                min: 0
+                max: 1
+                step: 0.01
+                default: 0.5
+                hint: "Darkness of overlay (0 = transparent, 1 = opaque). Use values like 0.5, 0.6, 0.75, etc."
 
   # ============================================
   # STATS SECTION
