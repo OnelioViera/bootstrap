@@ -161,12 +161,25 @@ async function loadHeroContent() {
         
         // Log video loading events
         video.addEventListener('loadstart', () => console.log('Video loading started'));
-        video.addEventListener('canplay', () => console.log('Video can play'));
+        video.addEventListener('canplay', () => {
+            console.log('Video can play');
+            // Try to play video when it's ready
+            video.play().catch(err => {
+                console.log('Autoplay blocked, will play on user interaction:', err);
+            });
+        });
         video.addEventListener('playing', () => console.log('Video is playing'));
         video.addEventListener('error', (e) => {
             console.error('Video error:', e);
             console.error('Video error details:', video.error);
         });
+        
+        // Try to play immediately if autoplay is enabled
+        if (settings.autoplay !== false) {
+            video.play().catch(err => {
+                console.log('Initial autoplay blocked:', err);
+            });
+        }
         
         // Add video controls (play/pause button)
         addVideoControls(video);
