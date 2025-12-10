@@ -91,7 +91,19 @@ async function loadHeroContent() {
     // Handle background (image or video)
     const heroSection = document.querySelector('.hero-section');
     
+    console.log('Background Type:', content.backgroundType);
+    console.log('Video URL:', content.videoUrl);
+    console.log('Hero Section found:', !!heroSection);
+    
     if (content.backgroundType === 'video' && content.videoUrl) {
+        console.log('Creating video background...');
+        
+        // Hide the default image
+        const heroImageWrapper = document.querySelector('.hero-image-wrapper');
+        if (heroImageWrapper) {
+            heroImageWrapper.style.display = 'none';
+        }
+        
         // Create video background
         const videoContainer = document.createElement('div');
         videoContainer.className = 'hero-video-background';
